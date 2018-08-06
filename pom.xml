@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.setyrobotics</groupId>
+	<artifactId>arduinoeditor</artifactId>
+	<name>elasticeditor</name>
+	<version>0.1.0</version>
+	<packaging>jar</packaging>
+
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+
+	</properties>
+
+	<scm>
+		<connection>scm:git:git://github.com/andreidore/arduinoeditor.git</connection>
+		<developerConnection>scm:git:ssh://github.com:andreidore/arduinoeditor.git</developerConnection>
+		<url>http://github.com/andreidore/arduinoeditor/tree/master</url>
+	</scm>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+			<version>2.0.3.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.6</version>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>buildnumber-maven-plugin</artifactId>
+				<version>1.4</version>
+				<executions>
+					<execution>
+						<phase>validate</phase>
+						<goals>
+							<goal>create</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<doCheck>false</doCheck>
+					<doUpdate>false</doUpdate>
+					<format>{0,number}</format>
+					<items>
+						<item>buildNumber</item>
+					</items>
+
+					<revisionOnScmFailure></revisionOnScmFailure>
+				</configuration>
+
+			</plugin>
+
+		</plugins>
+		<finalName>${project.artifactId}-${project.version}-${buildNumber}</finalName>
+	</build>
+
+
+</project>

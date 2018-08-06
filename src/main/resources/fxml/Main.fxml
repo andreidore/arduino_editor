@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.*?>
+
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+
+<?import javafx.scene.layout.FlowPane?>
+<?import com.github.andreidore.apex.app.ui.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import org.controlsfx.control.*?>
+<?import javafx.scene.control.SplitPane?>
+
+<StackPane fx:id="root" xmlns:fx="http://javafx.com/fxml/1"
+	xmlns="http://javafx.com/javafx/2.2"
+	fx:controller="com.github.andreidore.apex.robo.controller.MainController">
+	<!-- Header -->
+	<BorderPane>
+		<top>
+			<VBox>
+				<MenuBar id="menuBar" focusTraversable="true">
+					<menus>
+						<Menu text="File">
+							<items>
+								<MenuItem text="Open" onAction="#handleOpenAction" />
+								<MenuItem text="Save" />
+								<MenuItem text="Save As" onAction="#handleSaveAsAction" />
+								<SeparatorMenuItem />
+								<MenuItem text="Exit" onAction="#handleExitAction" />
+							</items>
+						</Menu>
+						<Menu text="JavaFX 2.0 Examples">
+							<items>
+								<MenuItem text="Text Example" />
+								<MenuItem text="Objects Example" />
+								<MenuItem text="Animation Example" />
+							</items>
+						</Menu>
+						<Menu text="Help">
+							<items>
+								<MenuItem text="Search" disable="true" />
+								<MenuItem text="Online Manual" visible="false" />
+								<SeparatorMenuItem />
+								<MenuItem text="About" />
+							</items>
+						</Menu>
+					</menus>
+				</MenuBar>
+				<ToolBar prefHeight="40.0" prefWidth="200.0"
+					styleClass="spacer" BorderPane.alignment="CENTER">
+					<items>
+						<Button mnemonicParsing="false" text="Add Job"
+							onAction="#handleAddJobAction">
+
+						</Button>
+						<Button mnemonicParsing="false" text="Topic List">
+
+						</Button>
+
+						<Button mnemonicParsing="false" text="Quit">
+
+						</Button>
+					</items>
+				</ToolBar>
+			</VBox>
+		</top>
+
+		<!-- Content Area -->
+		<center>
+			<SplitPane orientation="HORIZONTAL">
+				<items>
+					<VBox>
+						<Label text="Job list"></Label>
+
+
+						<TableView fx:id="jobTableView" GridPane.columnIndex="0"
+							GridPane.rowIndex="1">
+							<columns>
+								<TableColumn text="Name">
+									<cellValueFactory>
+										<PropertyValueFactory property="name" />
+									</cellValueFactory>
+								</TableColumn>
+								<TableColumn text="Last time" prefWidth="200">
+									<cellValueFactory>
+										<PropertyValueFactory property="lastTime" />
+									</cellValueFactory>
+								</TableColumn>
+								<TableColumn text="Enabled" prefWidth="100">
+									<cellValueFactory>
+										<PropertyValueFactory property="enabled" />
+									</cellValueFactory>
+								</TableColumn>
+							</columns>
+						</TableView>
+
+					</VBox>
+
+					<!-- <VBox > <HBox><Label text="Name:"></Label><TextField></TextField></HBox> 
+						<TabPane fx:id="jobTabPane"> <tabs> <Tab text="Action"> <VBox> </VBox> </Tab> 
+						<Tab text="Trigger"> <TextArea fx:id="console" visible="true" managed="true" 
+						/> </Tab> </tabs> </TabPane> </VBox> -->
+				</items>
+			</SplitPane>
+		</center>
+		<bottom>
+			<VBox spacing="5" style="-fx-padding: 5 5 5 5;">
+				<TabPane fx:id="tabPane">
+					<tabs>
+						<Tab text="Progress">
+							<TaskProgressView fx:id="taskProgressView">
+
+							</TaskProgressView>
+
+						</Tab>
+						<Tab text="Console">
+							<TextArea fx:id="console" visible="true" managed="true" />
+						</Tab>
+					</tabs>
+				</TabPane>
+
+				<HBox alignment="CENTER" spacing="10">
+					<Label fx:id="statusLabel" text="Sss" />
+
+					<Region HBox.hgrow="ALWAYS" />
+
+				</HBox>
+			</VBox>
+		</bottom>
+	</BorderPane>
+</StackPane>
