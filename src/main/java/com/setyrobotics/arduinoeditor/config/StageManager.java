@@ -1,4 +1,4 @@
-package com.setyrobotics.arduinoeditor.context;
+package com.setyrobotics.arduinoeditor.config;
 
 import static org.slf4j.LoggerFactory.getLogger;
 
@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.github.andreidore.apex.robo.view.FxmlView;
+import com.setyrobotics.arduinoeditor.view.FxmlView;
 
 import javafx.application.Platform;
 import javafx.scene.Parent;

@@ -4,14 +4,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import com.setyrobotics.arduinoeditor.config.StageManager;
 import com.setyrobotics.arduinoeditor.context.Context;
 import com.setyrobotics.arduinoeditor.model.Project;
+import com.setyrobotics.arduinoeditor.view.FxmlView;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 @SpringBootApplication
-public class EditorApplication {
+public class EditorApplication extends Application {
 
 	protected ConfigurableApplicationContext springContext;
 	protected StageManager stageManager;
@@ -45,7 +47,7 @@ public class EditorApplication {
 	}
 
 	private ConfigurableApplicationContext springBootApplicationContext() {
-		SpringApplicationBuilder builder = new SpringApplicationBuilder(Main.class);
+		SpringApplicationBuilder builder = new SpringApplicationBuilder(EditorApplication.class);
 		String[] args = getParameters().getRaw().stream().toArray(String[]::new);
 		return builder.run(args);
 	}

@@ -12,14 +12,13 @@
 <?import javafx.scene.layout.Region?>
 
 <?import javafx.scene.layout.FlowPane?>
-<?import com.github.andreidore.apex.app.ui.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import org.controlsfx.control.*?>
 <?import javafx.scene.control.SplitPane?>
 
 <StackPane fx:id="root" xmlns:fx="http://javafx.com/fxml/1"
 	xmlns="http://javafx.com/javafx/2.2"
-	fx:controller="com.github.andreidore.apex.robo.controller.MainController">
+	fx:controller="com.setyrobotics.arduinoeditor.controller.MainController">
 	<!-- Header -->
 	<BorderPane>
 		<top>
@@ -28,9 +27,9 @@
 					<menus>
 						<Menu text="File">
 							<items>
-								<MenuItem text="Open" onAction="#handleOpenAction" />
+								<MenuItem text="Open" />
 								<MenuItem text="Save" />
-								<MenuItem text="Save As" onAction="#handleSaveAsAction" />
+								<MenuItem text="Save As" />
 								<SeparatorMenuItem />
 								<MenuItem text="Exit" onAction="#handleExitAction" />
 							</items>
@@ -55,8 +54,7 @@
 				<ToolBar prefHeight="40.0" prefWidth="200.0"
 					styleClass="spacer" BorderPane.alignment="CENTER">
 					<items>
-						<Button mnemonicParsing="false" text="Add Job"
-							onAction="#handleAddJobAction">
+						<Button mnemonicParsing="false" text="Add Job">
 
 						</Button>
 						<Button mnemonicParsing="false" text="Topic List">
@@ -114,9 +112,6 @@
 				<TabPane fx:id="tabPane">
 					<tabs>
 						<Tab text="Progress">
-							<TaskProgressView fx:id="taskProgressView">
-
-							</TaskProgressView>
 
 						</Tab>
 						<Tab text="Console">
