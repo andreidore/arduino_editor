@@ -34,16 +34,16 @@ public class StageManager {
 		this.springFXMLLoader = springFXMLLoader;
 	}
 
-	public void switchScene(final FxmlView view) {
+	public Scene switchScene(final FxmlView view) {
 		Parent viewRootNodeHierarchy = loadViewNodeHierarchy(view.getFxmlFile());
-		show(viewRootNodeHierarchy, view.getTitle());
+		return show(viewRootNodeHierarchy, view.getTitle());
 	}
 
 	public void setStage(Stage stage) {
 		this.primaryStage = stage;
 	}
 
-	private void show(final Parent rootnode, String title) {
+	private Scene show(final Parent rootnode, String title) {
 		Scene scene = prepareScene(rootnode);
 		// scene.getStylesheets().add("/styles/Styles.css");
 
@@ -58,6 +58,8 @@ public class StageManager {
 		} catch (Exception exception) {
 			logAndExit("Unable to show scene for title" + title, exception);
 		}
+
+		return scene;
 	}
 
 	private Scene prepareScene(Parent rootnode) {

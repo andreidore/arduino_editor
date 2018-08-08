@@ -1,5 +1,7 @@
 package com.setyrobotics.arduinoeditor;
 
+import java.net.URL;
+
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -10,10 +12,18 @@ import com.setyrobotics.arduinoeditor.model.Project;
 import com.setyrobotics.arduinoeditor.view.FxmlView;
 
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 @SpringBootApplication
 public class EditorApplication extends Application {
+
+	private static final String FONT_AWESOME = "fontawesome.ttf";
+
+	private static final String STYLESHEET = "app.css";
 
 	protected ConfigurableApplicationContext springContext;
 	protected StageManager stageManager;
@@ -34,10 +44,30 @@ public class EditorApplication extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		stageManager = springContext.getBean(StageManager.class);
-		stageManager.setStage(stage);
 
-		stageManager.switchScene(FxmlView.MAIN);
+		try {
+			stageManager = springContext.getBean(StageManager.class);
+			stageManager.setStage(stage);
+
+			// scene.getStylesheets().add(getClass().getResource(TREE_SKIN_STYLESHEET).toExternalForm());
+			// scene.getStylesheets().add(getClass().getResource(TITLED_SKIN_STYLESHEET).toExternalForm());
+			
+			
+			
+			Font.loadFont(getClass().getClassLoader().getResource(FONT_AWESOME).toExternalForm(), 12);
+
+			Scene scene;
+
+			scene = stageManager.switchScene(FxmlView.MAIN);
+
+			scene.getStylesheets().add(getClass().getClassLoader().getResource(STYLESHEET).toExternalForm());
+
+		} catch (Exception e) {
+
+			e.printStackTrace();
+
+		}
+
 	}
 
 	@Override
