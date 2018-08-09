@@ -2,9 +2,12 @@ package com.setyrobotics.arduinoeditor.skin;
 
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.impl.EAttributeImpl;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
+
+import com.setyrobotics.arduinoeditor.node.DigitalPinAttribute;
 
 import de.tesis.dynaware.grapheditor.Commands;
 import de.tesis.dynaware.grapheditor.GraphEditor;
@@ -53,7 +56,8 @@ public class DefaultSkinController implements SkinController {
 
 		final GNode node = GraphFactory.eINSTANCE.createGNode();
 		node.setY(NODE_INITIAL_Y + windowYOffset);
-		
+
+		node.eSet(new DigitalPinAttribute(), 1);
 
 		final GConnector rightOutput = GraphFactory.eINSTANCE.createGConnector();
 		node.getConnectors().add(rightOutput);
