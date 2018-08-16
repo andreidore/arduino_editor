@@ -1,7 +1,6 @@
 package com.setyrobotics.arduinoeditor.controller;
 
 import java.net.URL;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,26 +9,19 @@ import org.springframework.stereotype.Controller;
 
 import com.setyrobotics.arduinoeditor.config.StageManager;
 import com.setyrobotics.arduinoeditor.context.Context;
-import com.setyrobotics.arduinoeditor.skin.DefaultSkinController;
-import com.setyrobotics.arduinoeditor.skin.SkinController;
 
-import de.tesis.dynaware.grapheditor.GraphEditor;
-import de.tesis.dynaware.grapheditor.GraphEditorContainer;
-import de.tesis.dynaware.grapheditor.core.DefaultGraphEditor;
-import de.tesis.dynaware.grapheditor.core.skins.defaults.connection.SimpleConnectionSkin;
-import de.tesis.dynaware.grapheditor.model.GModel;
-import de.tesis.dynaware.grapheditor.model.GNode;
-import de.tesis.dynaware.grapheditor.model.GraphFactory;
+import eu.mihosoft.vrl.workflow.Connector;
+import eu.mihosoft.vrl.workflow.FlowFactory;
+import eu.mihosoft.vrl.workflow.VFlow;
+import eu.mihosoft.vrl.workflow.VNode;
+import eu.mihosoft.vrl.workflow.fx.FXSkinFactory;
+import eu.mihosoft.vrl.workflow.fx.VCanvas;
 import javafx.application.Platform;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ListChangeListener.Change;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
-import javafx.scene.transform.Scale;
+import javafx.scene.layout.Pane;
 
 @Controller
 public class MainController implements Initializable {
@@ -38,16 +30,7 @@ public class MainController implements Initializable {
 	private TextArea console;
 
 	@FXML
-	private GraphEditorContainer graphEditorContainer;
-
-	private final GraphEditor graphEditor = new DefaultGraphEditor();
-
-	private DefaultSkinController defaultSkinController;
-
-	private final ObjectProperty<SkinController> activeSkinController = new SimpleObjectProperty<>();
-
-	private Scale scaleTransform;
-	private double currentZoomFactor = 1;
+	private VCanvas canvas;
 
 	@Lazy
 	@Autowired
@@ -59,56 +42,31 @@ public class MainController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		final GModel model = GraphFactory.eINSTANCE.createGModel();
+		// create a flow object
+		VFlow flow = FlowFactory.newFlow();
 
-		graphEditor.setModel(model);
+		// add two nodes to the flow
+		VNode n1 = flow.newNode();
+		VNode n2 = flow.newNode();
 
-		graphEditor.getSelectionManager().getSelectedNodes().addListener(new ListChangeListener<GNode>() {
+		// create input and output connectors of type "default-type"
+		Connector inN1 = n1.addInput("default-type");
+		Connector outN1 = n1.addOutput("default-type");
+		Connector inN2 = n2.addInput("default-type");
+		Connector outN2 = n2.addOutput("default-type");
 
-			@Override
-			public void onChanged(Change<? extends GNode> c) {
+		// create a connections
+		flow.connect(outN1, inN2);
 
-				while (c.next()) {
-					System.out.println(c.getAddedSize());
-				}
+		flow.setVisible(true);
 
-			}
-		});
+		// create a zoomable canvas
 
-		graphEditorContainer.setGraphEditor(graphEditor);
+		Pane root = (Pane) canvas.getContent();
 
-		setDetouredStyle();
-
-		defaultSkinController = new DefaultSkinController(graphEditor, graphEditorContainer);
-
-		activeSkinController.set(defaultSkinController);
-
-		initializeMenuBar();
-
-	}
-
-	@FXML
-	public void setDetouredStyle() {
-
-		final Map<String, String> customProperties = graphEditor.getProperties().getCustomProperties();
-		customProperties.put(SimpleConnectionSkin.SHOW_DETOURS_KEY, Boolean.toString(true));
-		graphEditor.reload();
-	}
-
-	@FXML
-	public void addNode() {
-		activeSkinController.get().addNode(currentZoomFactor);
-	}
-
-	/**
-	 * Initializes the menu bar.
-	 */
-	private void initializeMenuBar() {
-
-		scaleTransform = new Scale(currentZoomFactor, currentZoomFactor, 0, 0);
-		scaleTransform.yProperty().bind(scaleTransform.xProperty());
-
-		graphEditor.getView().getTransforms().add(scaleTransform);
+		// creating a skin factory and attach it to the flow
+		FXSkinFactory skinFactory = new FXSkinFactory(root);
+		flow.setSkinFactories(skinFactory);
 
 	}
 
