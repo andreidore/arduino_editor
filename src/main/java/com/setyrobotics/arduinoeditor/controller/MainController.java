@@ -3,25 +3,23 @@ package com.setyrobotics.arduinoeditor.controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.swing.SwingUtilities;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 
+import com.mxgraph.swing.mxGraphComponent;
+import com.mxgraph.view.mxGraph;
 import com.setyrobotics.arduinoeditor.config.StageManager;
 import com.setyrobotics.arduinoeditor.context.Context;
 
-import eu.mihosoft.vrl.workflow.Connector;
-import eu.mihosoft.vrl.workflow.FlowFactory;
-import eu.mihosoft.vrl.workflow.VFlow;
-import eu.mihosoft.vrl.workflow.VNode;
-import eu.mihosoft.vrl.workflow.fx.FXSkinFactory;
-import eu.mihosoft.vrl.workflow.fx.VCanvas;
 import javafx.application.Platform;
+import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.Pane;
 
 @Controller
 public class MainController implements Initializable {
@@ -30,7 +28,7 @@ public class MainController implements Initializable {
 	private TextArea console;
 
 	@FXML
-	private VCanvas canvas;
+	private SwingNode swingNode;
 
 	@Lazy
 	@Autowired
@@ -42,31 +40,28 @@ public class MainController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		// create a flow object
-		VFlow flow = FlowFactory.newFlow();
+		
 
-		// add two nodes to the flow
-		VNode n1 = flow.newNode();
-		VNode n2 = flow.newNode();
+		SwingUtilities.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+				
+				mxGraph graph = new mxGraph();
+				Object parent = graph.getDefaultParent();
 
-		// create input and output connectors of type "default-type"
-		Connector inN1 = n1.addInput("default-type");
-		Connector outN1 = n1.addOutput("default-type");
-		Connector inN2 = n2.addInput("default-type");
-		Connector outN2 = n2.addOutput("default-type");
-
-		// create a connections
-		flow.connect(outN1, inN2);
-
-		flow.setVisible(true);
-
-		// create a zoomable canvas
-
-		Pane root = (Pane) canvas.getContent();
-
-		// creating a skin factory and attach it to the flow
-		FXSkinFactory skinFactory = new FXSkinFactory(root);
-		flow.setSkinFactories(skinFactory);
+				graph.getModel().beginUpdate();
+				try {
+					Object v1 = graph.insertVertex(parent, null, "Hello", 20, 20, 80, 30);
+					Object v2 = graph.insertVertex(parent, null, "World!", 240, 150, 80, 30);
+					graph.insertEdge(parent, null, "Edge", v1, v2);
+				} finally {
+					graph.getModel().endUpdate();
+				}
+				
+				mxGraphComponent graphComponent = new mxGraphComponent(graph);
+				swingNode.setContent(graphComponent);
+			}
+		});
 
 	}
 

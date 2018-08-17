@@ -2,7 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import eu.mihosoft.vrl.workflow.fx.VCanvas?>
+<?import javafx.embed.swing.SwingNode?>
 
 <AnchorPane fx:id="root" xmlns:fx="http://javafx.com/fxml"
 	fx:controller="com.setyrobotics.arduinoeditor.controller.MainController">
@@ -46,8 +46,7 @@
 				</Menu>
 				<Menu text="Actions">
 					<items>
-						<MenuItem text="Add Node" 
-							accelerator="Shortcut+N" />
+						<MenuItem text="Add Node" accelerator="Shortcut+N" />
 						<MenuItem text="Add Connector" fx:id="addConnectorButton"
 							accelerator="Shortcut+E" />
 						<MenuItem text="Clear Connectors"
@@ -103,8 +102,7 @@
 				</Menu>
 			</menus>
 		</MenuBar>
-		<VCanvas fx:id="canvas" prefWidth="500" prefHeight="500" 
-			maxWidth="+Infinity" maxHeight="+Infinity" VBox.vgrow="ALWAYS" />
+		<SwingNode fx:id="swingNode" VBox.vgrow="ALWAYS" />
 	</VBox>
 	<ToggleButton fx:id="minimapButton"
 		focusTraversable="false" AnchorPane.rightAnchor="10"
