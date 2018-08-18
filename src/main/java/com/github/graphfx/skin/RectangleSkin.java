@@ -1,21 +1,16 @@
-package com.setyrobotics.arduinoeditor.skin.button;
+package com.github.graphfx.skin;
 
 import com.github.graphfx.Node;
-import com.github.graphfx.skin.Skin;
-import com.setyrobotics.arduinoeditor.model.button.Button;
 
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class ButtonSkin implements Skin {
+public class RectangleSkin implements Skin {
 
 	@Override
 	public Region getGraphic(Node node) {
-
-		Button button = (Button) node;
-
 		final Rectangle view = new Rectangle(50, 50);
 
 		view.setStroke(Color.DODGERBLUE);

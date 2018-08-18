@@ -1,7 +1,5 @@
 package com.setyrobotics.arduinoeditor;
 
-import java.net.URL;
-
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -12,8 +10,6 @@ import com.setyrobotics.arduinoeditor.model.Project;
 import com.setyrobotics.arduinoeditor.view.FxmlView;
 
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
