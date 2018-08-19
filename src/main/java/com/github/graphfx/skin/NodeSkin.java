@@ -4,7 +4,7 @@ import com.github.graphfx.Node;
 
 import javafx.scene.layout.Region;
 
-public interface Skin {
+public interface NodeSkin {
 
 	public Region getGraphic(Node node);
 

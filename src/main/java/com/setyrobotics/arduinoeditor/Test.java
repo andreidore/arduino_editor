@@ -1,13 +1,6 @@
 package com.setyrobotics.arduinoeditor;
 
-import com.fxgraph.cells.RectangleCell;
-import com.fxgraph.cells.TriangleCell;
-import com.fxgraph.edges.Edge;
-import com.fxgraph.graph.ICell;
-import com.fxgraph.graph.Model;
-import com.fxgraph.layout.RandomLayout;
 import com.github.graphfx.Graph;
-import com.github.graphfx.Node;
 import com.github.graphfx.view.GraphView;
 import com.setyrobotics.arduinoeditor.model.button.Button;
 import com.setyrobotics.arduinoeditor.skin.button.ButtonSkin;

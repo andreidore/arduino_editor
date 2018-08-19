@@ -7,7 +7,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class RectangleSkin implements Skin {
+public class RectangleNodeSkin implements NodeSkin {
 
 	@Override
 	public Region getGraphic(Node node) {

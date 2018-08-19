@@ -6,7 +6,7 @@ import java.util.Map;
 import com.github.graphfx.Graph;
 import com.github.graphfx.Node;
 import com.github.graphfx.layout.Layout;
-import com.github.graphfx.skin.Skin;
+import com.github.graphfx.skin.NodeSkin;
 
 import javafx.collections.ListChangeListener;
 import javafx.scene.input.MouseEvent;
@@ -16,7 +16,7 @@ import javafx.scene.layout.Region;
 public class GraphView {
 
 	private final PannableCanvas pannableCanvas;
-	private final Map<Class<? extends Node>, Skin> graphics;
+	private final Map<Class<? extends Node>, NodeSkin> graphics;
 	private final NodeGestures nodeGestures;
 	private Graph graph;
 
@@ -61,7 +61,7 @@ public class GraphView {
 
 					for (Node n : c.getAddedSubList()) {
 
-						Skin skin = graphics.get(n.getClass());
+						NodeSkin skin = graphics.get(n.getClass());
 
 						Region nodeGraphic = skin.getGraphic(n);
 
@@ -94,7 +94,7 @@ public class GraphView {
 		// layout.execute(this);
 	}
 
-	public void addSkin(Class<? extends Node> clazz, Skin skin) {
+	public void addSkin(Class<? extends Node> clazz, NodeSkin skin) {
 
 		graphics.put(clazz, skin);
 	}
