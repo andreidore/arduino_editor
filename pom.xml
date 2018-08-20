@@ -45,6 +45,14 @@
 			<version>2.6</version>
 		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/com.github.jgraph/jgraphx -->
+		<dependency>
+			<groupId>com.github.jgraph</groupId>
+			<artifactId>jgraphx</artifactId>
+			<version>v3.9.8</version>
+		</dependency>
+
+
 
 	</dependencies>
 
