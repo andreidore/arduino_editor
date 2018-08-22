@@ -14,6 +14,7 @@ import com.mxgraph.view.mxGraph;
 import com.setyrobotics.arduinoeditor.config.StageManager;
 import com.setyrobotics.arduinoeditor.context.Context;
 
+import application.DragIcon;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingNode;
 import javafx.event.ActionEvent;
@@ -40,21 +41,12 @@ public class MainController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 
-		SwingUtilities.invokeLater(this::createMxGraph);
+		mDragOverIcon = new DragIcon();
 
-	}
+		mDragOverIcon.setVisible(false);
+		mDragOverIcon.setOpacity(0.65);
+		getChildren().add(mDragOverIcon);
 
-	private void createMxGraph() {
-		mxGraph grafo = new mxGraph();
-		Object parent = grafo.getDefaultParent();
-
-		Object v1 = grafo.insertVertex(parent, null, "Brazil", 100, 100, 50, 40);
-		Object v2 = grafo.insertVertex(parent, null, "Soccer", 240, 150, 50, 40);
-		Object a1 = grafo.insertEdge(parent, null, "loves", v1, v2);
-
-		mxGraphComponent graphComponent = new mxGraphComponent(grafo);
-
-		swingNode.setContent(graphComponent);
 	}
 
 	public void handleExitAction(ActionEvent event) {

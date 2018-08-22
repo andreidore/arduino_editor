@@ -66,7 +66,7 @@ public class StageManager {
 		Scene scene = primaryStage.getScene();
 
 		if (scene == null) {
-			scene = new Scene(rootnode);
+			scene = new Scene(rootnode,800,600);
 		}
 		scene.setRoot(rootnode);
 		return scene;
