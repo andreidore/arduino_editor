@@ -7,7 +7,7 @@ public enum FxmlView {
 	MAIN {
 		@Override
 		public String getTitle() {
-			return getStringFromResourceBundle("user.title");
+			return getStringFromResourceBundle("title");
 		}
 
 		@Override
