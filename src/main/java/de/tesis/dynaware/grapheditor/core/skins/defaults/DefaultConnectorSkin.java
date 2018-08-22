@@ -65,7 +65,7 @@ public class DefaultConnectorSkin extends GConnectorSkin {
         root.setPickOnBounds(false);
 
         polygon.setManaged(false);
-        polygon.getStyleClass().addAll(STYLE_CLASS_BASE, connector.getType());
+        polygon.getStyleClass().addAll(STYLE_CLASS_BASE, connector.getType().getValue());
 
         drawTriangleConnector(connector.getType(), polygon);
 
