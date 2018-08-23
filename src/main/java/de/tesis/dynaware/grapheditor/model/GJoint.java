@@ -2,6 +2,10 @@
  */
 package de.tesis.dynaware.grapheditor.model;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.StringProperty;
+
 /**
  * <!-- begin-user-doc --> A representation of the model object
  * '<em><b>GJoint</b></em>'. <!-- end-user-doc -->
@@ -39,48 +43,9 @@ public interface GJoint {
 	 * @model id="true"
 	 * @generated
 	 */
-	String getId();
+	StringProperty getId();
 
-	/**
-	 * Sets the value of the
-	 * '{@link de.tesis.dynaware.grapheditor.model.GJoint#getId <em>Id</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Id</em>' attribute.
-	 * @see #getId()
-	 * @generated
-	 */
-	void setId(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Type</b></em>' attribute. <!--
-	 * begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Type</em>' attribute isn't clear, there really
-	 * should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Type</em>' attribute.
-	 * @see #setType(String)
-	 * @see de.tesis.dynaware.grapheditor.model.GraphPackage#getGJoint_Type()
-	 * @model
-	 * @generated
-	 */
-	String getType();
-
-	/**
-	 * Sets the value of the
-	 * '{@link de.tesis.dynaware.grapheditor.model.GJoint#getType <em>Type</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Type</em>' attribute.
-	 * @see #getType()
-	 * @generated
-	 */
-	void setType(String value);
+	StringProperty getType();
 
 	/**
 	 * Returns the value of the '<em><b>Connection</b></em>' container reference. It
@@ -100,20 +65,7 @@ public interface GJoint {
 	 * @model opposite="joints" required="true" transient="false"
 	 * @generated
 	 */
-	GConnection getConnection();
-
-	/**
-	 * Sets the value of the
-	 * '{@link de.tesis.dynaware.grapheditor.model.GJoint#getConnection
-	 * <em>Connection</em>}' container reference. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Connection</em>' container reference.
-	 * @see #getConnection()
-	 * @generated
-	 */
-	void setConnection(GConnection value);
+	ObjectProperty<GConnection> getConnection();
 
 	/**
 	 * Returns the value of the '<em><b>X</b></em>' attribute. The default value is
@@ -130,45 +82,8 @@ public interface GJoint {
 	 * @model default="0" required="true"
 	 * @generated
 	 */
-	double getX();
+	DoubleProperty getX();
 
-	/**
-	 * Sets the value of the '{@link de.tesis.dynaware.grapheditor.model.GJoint#getX
-	 * <em>X</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>X</em>' attribute.
-	 * @see #getX()
-	 * @generated
-	 */
-	void setX(double value);
-
-	/**
-	 * Returns the value of the '<em><b>Y</b></em>' attribute. The default value is
-	 * <code>"0"</code>. <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Y</em>' attribute isn't clear, there really should
-	 * be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Y</em>' attribute.
-	 * @see #setY(double)
-	 * @see de.tesis.dynaware.grapheditor.model.GraphPackage#getGJoint_Y()
-	 * @model default="0" required="true"
-	 * @generated
-	 */
-	double getY();
-
-	/**
-	 * Sets the value of the '{@link de.tesis.dynaware.grapheditor.model.GJoint#getY
-	 * <em>Y</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Y</em>' attribute.
-	 * @see #getY()
-	 * @generated
-	 */
-	void setY(double value);
+	DoubleProperty getY();
 
 } // GJoint

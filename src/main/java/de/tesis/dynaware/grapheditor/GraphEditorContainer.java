@@ -80,7 +80,7 @@ public class GraphEditorContainer extends AutoScrollingWindow {
             final SkinLookup skinLookup = graphEditor.getSkinLookup();
 
             if (model != null) {
-                view.resize(model.getContentWidth(), model.getContentHeight());
+                view.resize(model.getContentWidth().get(), model.getContentHeight().get());
             }
 
             setContent(view);
@@ -130,7 +130,7 @@ public class GraphEditorContainer extends AutoScrollingWindow {
 
         modelChangeListener = (ChangeListener<GModel>) (observable, oldValue, newValue) -> {
             if (newValue == null || (newValue != null && !newValue.equals(oldValue))) {
-                graphEditor.getView().resize(newValue.getContentWidth(), newValue.getContentHeight());
+                graphEditor.getView().resize(newValue.getContentWidth().get(), newValue.getContentHeight().get());
                 checkWindowBounds();
                 minimap.setModel(newValue);
             }

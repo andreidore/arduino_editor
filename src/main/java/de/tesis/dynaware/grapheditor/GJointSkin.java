@@ -59,8 +59,8 @@ public abstract class GJointSkin extends GSkin {
      * </p>
      */
     public void initialize() {
-        getRoot().setLayoutX(getJoint().getX() - getWidth() / 2);
-        getRoot().setLayoutY(getJoint().getY() - getHeight() / 2);
+        getRoot().setLayoutX(getJoint().getX().get() - getWidth() / 2);
+        getRoot().setLayoutY(getJoint().getY().get() - getHeight() / 2);
     }
 
     /**

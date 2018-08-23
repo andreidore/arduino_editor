@@ -75,10 +75,10 @@ public abstract class GNodeSkin extends GSkin {
      */
     public void initialize() {
 
-        getRoot().setLayoutX(getNode().getX());
-        getRoot().setLayoutY(getNode().getY());
+        getRoot().setLayoutX(getNode().getX().get());
+        getRoot().setLayoutY(getNode().getY().get());
 
-        getRoot().resize(getNode().getWidth(), getNode().getHeight());
+        getRoot().resize(getNode().getWidth().get(), getNode().getHeight().get());
     }
 
     /**

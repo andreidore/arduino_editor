@@ -2,6 +2,9 @@
  */
 package de.tesis.dynaware.grapheditor.model;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.ObservableList;
 
 /**
@@ -81,20 +84,9 @@ public interface GModel {
 	 * @model
 	 * @generated
 	 */
-	String getType();
+	StringProperty getType();
 
-	/**
-	 * Sets the value of the
-	 * '{@link de.tesis.dynaware.grapheditor.model.GModel#getType <em>Type</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Type</em>' attribute.
-	 * @see #getType()
-	 * @generated
-	 */
-	void setType(String value);
-
+	
 	/**
 	 * Returns the value of the '<em><b>Content Height</b></em>' attribute. The
 	 * default value is <code>"2250"</code>. <!-- begin-user-doc -->
@@ -110,7 +102,7 @@ public interface GModel {
 	 * @model default="2250" required="true"
 	 * @generated
 	 */
-	double getContentHeight();
+	DoubleProperty getContentHeight();
 
 	/**
 	 * Sets the value of the
@@ -123,7 +115,7 @@ public interface GModel {
 	 * @see #getContentHeight()
 	 * @generated
 	 */
-	void setContentHeight(double value);
+	
 
 	/**
 	 * Returns the value of the '<em><b>Supergraph</b></em>' container reference. It
@@ -142,7 +134,7 @@ public interface GModel {
 	 * @model opposite="subgraph" transient="false" changeable="false"
 	 * @generated
 	 */
-	GNode getSupergraph();
+	ObjectProperty<GNode> getSupergraph();
 
 	/**
 	 * Returns the value of the '<em><b>Content Width</b></em>' attribute. The
@@ -159,7 +151,7 @@ public interface GModel {
 	 * @model default="3000" required="true"
 	 * @generated
 	 */
-	double getContentWidth();
+	DoubleProperty getContentWidth();
 
 	/**
 	 * Sets the value of the
@@ -172,6 +164,6 @@ public interface GModel {
 	 * @see #getContentWidth()
 	 * @generated
 	 */
-	void setContentWidth(double value);
+	
 
 } // GModel
