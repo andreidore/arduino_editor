@@ -57,10 +57,10 @@ public class MinimapNodeGroup extends MinimapContentRepresentation {
 
                 final MinimapNode minimapNode = new MinimapNode(node, skinLookup);
 
-                minimapNode.setX(Math.round(node.getX() * scaleFactor));
-                minimapNode.setY(Math.round(node.getY() * scaleFactor));
-                minimapNode.setWidth(Math.round(node.getWidth() * scaleFactor));
-                minimapNode.setHeight(Math.round(node.getHeight() * scaleFactor));
+                minimapNode.setX(Math.round(node.getX().get() * scaleFactor));
+                minimapNode.setY(Math.round(node.getY().get() * scaleFactor));
+                minimapNode.setWidth(Math.round(node.getWidth().get() * scaleFactor));
+                minimapNode.setHeight(Math.round(node.getHeight().get() * scaleFactor));
 
                 getChildren().add(minimapNode);
             }

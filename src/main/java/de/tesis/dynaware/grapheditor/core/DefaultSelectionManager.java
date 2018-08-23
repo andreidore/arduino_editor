@@ -4,11 +4,8 @@
 package de.tesis.dynaware.grapheditor.core;
 
 import java.util.List;
-import java.util.function.BiConsumer;
 import java.util.function.BiPredicate;
 import java.util.function.Consumer;
-
-import org.eclipse.emf.common.command.CompoundCommand;
 
 import de.tesis.dynaware.grapheditor.GConnectionSkin;
 import de.tesis.dynaware.grapheditor.SelectionManager;
@@ -63,9 +60,12 @@ public class DefaultSelectionManager implements SelectionManager {
 	 * Creates a new default selection manager. Only one instance should exist per
 	 * {@link DefaultGraphEditor} instance.
 	 *
-	 * @param skinLookup          the {@link SkinLookup} instance in use
-	 * @param view                the {@link GraphEditorView} instance in use
-	 * @param modelEditingManager the {@link ModelEditingManager} in use
+	 * @param skinLookup
+	 *            the {@link SkinLookup} instance in use
+	 * @param view
+	 *            the {@link GraphEditorView} instance in use
+	 * @param modelEditingManager
+	 *            the {@link ModelEditingManager} in use
 	 */
 	public DefaultSelectionManager(final SkinLookup skinLookup, final GraphEditorView view,
 			final ModelEditingManager modelEditingManager) {
@@ -80,7 +80,8 @@ public class DefaultSelectionManager implements SelectionManager {
 	/**
 	 * Initializes the selection manager for the given model.
 	 *
-	 * @param model the {@link GModel} currently being edited
+	 * @param model
+	 *            the {@link GModel} currently being edited
 	 */
 	public void initialize(final GModel model) {
 
@@ -139,7 +140,7 @@ public class DefaultSelectionManager implements SelectionManager {
 	}
 
 	@Override
-	public void deleteSelection(final BiConsumer<List<GNode>, CompoundCommand> consumer) {
+	public void deleteSelection(Consumer<List<GNode>> consumer) {
 		selectionDeleter.deleteSelection(model, consumer);
 	}
 

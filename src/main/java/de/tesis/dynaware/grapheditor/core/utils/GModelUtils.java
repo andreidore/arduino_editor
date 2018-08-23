@@ -64,16 +64,18 @@ public class GModelUtils {
 
                         final GConnection copiedConnection;
                         if (!copiedConnections.containsKey(connection)) {
-                            copiedConnection = EcoreUtil.copy(connection);
-                            copiedConnections.put(connection, copiedConnection);
+                            //TODO Fix this
+                        	copiedConnection=new GConnec
+                        	//copiedConnection = EcoreUtil.copy(connection);
+                            //copiedConnections.put(connection, copiedConnection);
                         } else {
                             copiedConnection = copiedConnections.get(connection);
                         }
 
-                        if (connection.getSource().equals(connector)) {
-                            copiedConnection.setSource(copiedConnector);
+                        if (connection.getSource().get().equals(connector)) {
+                            copiedConnection.getSource().set(copiedConnector);
                         } else {
-                            copiedConnection.setTarget(copiedConnector);
+                            copiedConnection.getTarget().set(copiedConnector);
                         }
 
                         copiedConnector.getConnections().add(copiedConnection);

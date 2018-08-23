@@ -50,13 +50,13 @@ public class ModelSanityChecker {
      */
     private static boolean validateSizes(final GModel model) {
 
-        if (model.getContentWidth() < 0 || model.getContentHeight() < 0) {
+        if (model.getContentWidth().get() < 0 || model.getContentHeight().get() < 0) {
             LOGGER.error(LogMessages.MODEL_SIZES_INVALID);
             return false;
         }
 
         for (final GNode node : model.getNodes()) {
-            if (node.getWidth() < 0 || node.getHeight() < 0) {
+            if (node.getWidth().get() < 0 || node.getHeight().get() < 0) {
                 LOGGER.error(LogMessages.MODEL_SIZES_INVALID);
                 return false;
             }
@@ -77,8 +77,8 @@ public class ModelSanityChecker {
 
         for (final GConnection connection : model.getConnections()) {
 
-            final GConnector source = connection.getSource();
-            final GConnector target = connection.getTarget();
+            final GConnector source = connection.getSource().get();
+            final GConnector target = connection.getTarget().get();
 
             if (source == null || target == null) {
                 LOGGER.error(LogMessages.CONNECTOR_MISSING);

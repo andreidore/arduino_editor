@@ -42,7 +42,7 @@ public class GeometryUtils {
     public static Point2D getConnectorPosition(final GConnector connector, final SkinLookup skinLookup) {
 
         final GConnectorSkin connectorSkin = skinLookup.lookupConnector(connector);
-        final GConnectable parent = connector.getParent();
+        final GConnectable parent = connector.getParent().get();
 
         if (parent instanceof GNode) {
 
@@ -139,7 +139,7 @@ public class GeometryUtils {
         final List<Point2D> jointPositions = new ArrayList<>();
 
         for (final GJoint joint : connection.getJoints()) {
-            jointPositions.add(new Point2D(joint.getX(), joint.getY()));
+            jointPositions.add(new Point2D(joint.getX().get(), joint.getY().get()));
         }
 
         return jointPositions;

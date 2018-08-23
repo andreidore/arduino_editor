@@ -201,11 +201,11 @@ public class JointCreator {
         final double adjacentJointY;
 
         if (index < connection.getJoints().size()) {
-            adjacentJointX = connection.getJoints().get(index).getX();
-            adjacentJointY = connection.getJoints().get(index).getY();
+            adjacentJointX = connection.getJoints().get(index).getX().get();
+            adjacentJointY = connection.getJoints().get(index).getY().get();
         } else {
-            adjacentJointX = connection.getJoints().get(index - 1).getX();
-            adjacentJointY = connection.getJoints().get(index - 1).getY();
+            adjacentJointX = connection.getJoints().get(index - 1).getX().get();
+            adjacentJointY = connection.getJoints().get(index - 1).getY().get();
         }
 
         final Point2D clickPositionInParent = root.localToParent(event.getX(), event.getY());
@@ -240,11 +240,11 @@ public class JointCreator {
         final GJoint firstNewJoint = GraphFactory.eINSTANCE.createGJoint();
         final GJoint secondNewJoint = GraphFactory.eINSTANCE.createGJoint();
 
-        firstNewJoint.setX(x);
-        firstNewJoint.setY(y);
+        firstNewJoint.getX().set(x);
+        firstNewJoint.getY().set(y);
 
-        secondNewJoint.setX(x);
-        secondNewJoint.setY(y);
+        secondNewJoint.getX().set(x);
+        secondNewJoint.getY().set(y);
 
         temporaryJoints = new ArrayList<>();
 

@@ -67,7 +67,7 @@ public class DefaultConnectorSkin extends GConnectorSkin {
         polygon.setManaged(false);
         polygon.getStyleClass().addAll(STYLE_CLASS_BASE, connector.getType().getValue());
 
-        drawTriangleConnector(connector.getType(), polygon);
+        drawTriangleConnector(connector.getType().get(), polygon);
 
         root.getChildren().add(polygon);
 
@@ -193,9 +193,9 @@ public class DefaultConnectorSkin extends GConnectorSkin {
      * Checks that the connector has the correct values to be displayed using this skin.
      */
     private void performChecks() {
-        if (!DefaultConnectorTypes.isValid(getConnector().getType())) {
+        if (!DefaultConnectorTypes.isValid(getConnector().getType().get())) {
             LOGGER.error(LogMessages.UNSUPPORTED_CONNECTOR, getConnector().getType());
-            getConnector().setType(DefaultConnectorTypes.LEFT_INPUT);
+            getConnector().getType().set(DefaultConnectorTypes.LEFT_INPUT);
         }
     }
 }

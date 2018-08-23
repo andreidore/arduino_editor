@@ -8,7 +8,6 @@ import de.tesis.dynaware.grapheditor.model.GJoint;
 import de.tesis.dynaware.grapheditor.model.GModel;
 import de.tesis.dynaware.grapheditor.model.GNode;
 import de.tesis.dynaware.grapheditor.model.GraphFactory;
-import de.tesis.dynaware.grapheditor.model.GraphPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
@@ -86,26 +85,6 @@ public class GraphFactoryImpl implements GraphFactory {
 	public GJoint createGJoint() {
 		GJointImpl gJoint = new GJointImpl();
 		return gJoint;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public GraphPackage getGraphPackage() {
-		return null;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @deprecated
-	 * @generated
-	 */
-	@Deprecated
-	public static GraphPackage getPackage() {
-		return GraphPackage.eINSTANCE;
 	}
 
 } // GraphFactoryImpl

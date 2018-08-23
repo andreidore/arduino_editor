@@ -109,7 +109,7 @@ public class DefaultNodeSkin extends GNodeSkin {
         if (connectorSkins != null) {
             for (final GConnectorSkin connectorSkin : connectorSkins) {
 
-                final String type = connectorSkin.getConnector().getType();
+                final String type = connectorSkin.getConnector().getType().get();
 
                 if (DefaultConnectorTypes.isTop(type)) {
                     topConnectorSkins.add(connectorSkin);
@@ -139,7 +139,7 @@ public class DefaultNodeSkin extends GNodeSkin {
 
         final Node connectorRoot = connectorSkin.getRoot();
 
-        final Side side = DefaultConnectorTypes.getSide(connectorSkin.getConnector().getType());
+        final Side side = DefaultConnectorTypes.getSide(connectorSkin.getConnector().getType().get());
 
         // The following logic is required because the connectors are offset slightly from the node edges.
         final double x, y;
@@ -166,9 +166,9 @@ public class DefaultNodeSkin extends GNodeSkin {
     private void performChecks() {
 
         for (final GConnector connector : getNode().getConnectors()) {
-            if (!DefaultConnectorTypes.isValid(connector.getType())) {
+            if (!DefaultConnectorTypes.isValid(connector.getType().get())) {
                 LOGGER.error(LogMessages.UNSUPPORTED_CONNECTOR, connector.getType());
-                connector.setType(DefaultConnectorTypes.LEFT_INPUT);
+                connector.getType().set(DefaultConnectorTypes.LEFT_INPUT);
             }
         }
     }
@@ -294,7 +294,7 @@ public class DefaultNodeSkin extends GNodeSkin {
      */
     private double getMinorOffsetX(final GConnector connector) {
 
-        final String type = connector.getType();
+        final String type = connector.getType().get();
 
         if (type.equals(DefaultConnectorTypes.LEFT_INPUT) || type.equals(DefaultConnectorTypes.RIGHT_OUTPUT)) {
             return MINOR_POSITIVE_OFFSET;
@@ -312,7 +312,7 @@ public class DefaultNodeSkin extends GNodeSkin {
      */
     private double getMinorOffsetY(final GConnector connector) {
 
-        final String type = connector.getType();
+        final String type = connector.getType().get();
 
         if (type.equals(DefaultConnectorTypes.TOP_INPUT) || type.equals(DefaultConnectorTypes.BOTTOM_OUTPUT)) {
             return MINOR_POSITIVE_OFFSET;

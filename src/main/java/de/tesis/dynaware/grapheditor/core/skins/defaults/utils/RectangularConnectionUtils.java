@@ -25,7 +25,7 @@ public class RectangularConnectionUtils {
      */
     public static boolean isSegmentHorizontal(final GConnection connection, final int i) {
 
-        final String sourceType = connection.getSource().getType();
+        final String sourceType = connection.getSource().get().getType().get();
         final boolean sourceIsLeft = DefaultConnectorTypes.isLeft(sourceType);
         final boolean sourceIsRight = DefaultConnectorTypes.isRight(sourceType);
         final boolean firstSegmentHorizontal = sourceIsLeft || sourceIsRight;
@@ -41,8 +41,8 @@ public class RectangularConnectionUtils {
      */
     public static boolean checkJointCount(final GConnection connection) {
 
-        final Side sourceSide = DefaultConnectorTypes.getSide(connection.getSource().getType());
-        final Side targetSide = DefaultConnectorTypes.getSide(connection.getTarget().getType());
+        final Side sourceSide = DefaultConnectorTypes.getSide(connection.getSource().get().getType().get());
+        final Side targetSide = DefaultConnectorTypes.getSide(connection.getTarget().get().getType().get());
 
         final boolean bothHorizontal = sourceSide.isHorizontal() && targetSide.isHorizontal();
         final boolean bothVertical = sourceSide.isVertical() && targetSide.isVertical();

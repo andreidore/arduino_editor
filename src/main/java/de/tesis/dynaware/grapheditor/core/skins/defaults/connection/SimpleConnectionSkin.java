@@ -191,7 +191,7 @@ public class SimpleConnectionSkin extends GConnectionSkin {
      */
     private void restrictFirstAndLastJoints() {
 
-        final GNode sourceNode = (GNode) getConnection().getSource().getParent();
+        final GNode sourceNode = (GNode) getConnection().getSource().get().getParent();
         final GNodeSkin sourceNodeSkin = getGraphEditor().getSkinLookup().lookupNode(sourceNode);
 
         if (RectangularConnectionUtils.isSegmentHorizontal(getConnection(), 0)) {
@@ -200,7 +200,7 @@ public class SimpleConnectionSkin extends GConnectionSkin {
             jointSkins.get(0).getRoot().dragEnabledXProperty().bind(sourceNodeSkin.selectedProperty());
         }
 
-        final GNode targetNode = (GNode) getConnection().getTarget().getParent();
+        final GNode targetNode = (GNode) getConnection().getTarget().get().getParent();
         final GNodeSkin targetNodeSkin = getGraphEditor().getSkinLookup().lookupNode(targetNode);
         final int lastIndex = jointSkins.size() - 1;
 

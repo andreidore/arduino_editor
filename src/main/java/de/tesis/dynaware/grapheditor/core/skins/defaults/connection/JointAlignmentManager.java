@@ -241,8 +241,8 @@ public class JointAlignmentManager {
      */
     private boolean isNodeStationary(final GJointSkin jointSkin, final boolean source) {
 
-        final GConnector connector = source ? connection.getSource() : connection.getTarget();
-        final GConnectable parent = connector.getParent();
+        final GConnector connector = source ? connection.getSource().get() : connection.getTarget().get();
+        final GConnectable parent = connector.getParent().get();
 
         if (parent instanceof GNode) {
             final GNodeSkin nodeSkin = skinLookup.lookupNode((GNode) parent);

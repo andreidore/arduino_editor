@@ -70,6 +70,6 @@ public interface GraphFactory {
 	 * @return the package supported by this factory.
 	 * @generated
 	 */
-	GraphPackage getGraphPackage();
+	
 
 } // GraphFactory

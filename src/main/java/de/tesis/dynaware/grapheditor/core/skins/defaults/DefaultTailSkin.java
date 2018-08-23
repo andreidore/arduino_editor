@@ -55,9 +55,9 @@ public class DefaultTailSkin extends GTailSkin {
 
         performChecks();
 
-        DefaultConnectorSkin.drawTriangleConnector(connector.getType(), endpoint);
+        DefaultConnectorSkin.drawTriangleConnector(connector.getType().get(), endpoint);
 
-        endpoint.getStyleClass().addAll(STYLE_CLASS_ENDPOINT, connector.getType());
+        endpoint.getStyleClass().addAll(STYLE_CLASS_ENDPOINT, connector.getType().get());
         line.getStyleClass().setAll(STYLE_CLASS);
         group.setManaged(false);
     }
@@ -127,9 +127,9 @@ public class DefaultTailSkin extends GTailSkin {
      * Checks that the connector has the correct values to use this skin.
      */
     private void performChecks() {
-        if (!DefaultConnectorTypes.isValid(getConnector().getType())) {
+        if (!DefaultConnectorTypes.isValid(getConnector().getType().get())) {
             LOGGER.error(LogMessages.UNSUPPORTED_CONNECTOR, getConnector().getType());
-            getConnector().setType(DefaultConnectorTypes.LEFT_INPUT);
+            getConnector().getType().set(DefaultConnectorTypes.LEFT_INPUT);
         }
     }
 
@@ -144,7 +144,7 @@ public class DefaultTailSkin extends GTailSkin {
         clearPoints();
         addPoint(start);
 
-        if (DefaultConnectorTypes.getSide(getConnector().getType()).isVertical()) {
+        if (DefaultConnectorTypes.getSide(getConnector().getType().get()).isVertical()) {
             addPoint((start.getX() + end.getX()) / 2, start.getY());
             addPoint((start.getX() + end.getX()) / 2, end.getY());
         } else {
@@ -167,8 +167,8 @@ public class DefaultTailSkin extends GTailSkin {
         clearPoints();
         addPoint(start);
 
-        final Side startSide = DefaultConnectorTypes.getSide(getConnector().getType());
-        final Side endSide = DefaultConnectorTypes.getSide(target.getType());
+        final Side startSide = DefaultConnectorTypes.getSide(getConnector().getType().get());
+        final Side endSide = DefaultConnectorTypes.getSide(target.getType().get());
 
         final List<Point2D> points = RectangularPathCreator.createPath(start, end, startSide, endSide);
         points.stream().forEachOrdered(point -> addPoint(point));

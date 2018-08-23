@@ -511,7 +511,7 @@ public class SelectionCreator {
 
         for (final GNode node : model.getNodes()) {
 
-            if (selection.contains(node.getX(), node.getY(), node.getWidth(), node.getHeight())) {
+            if (selection.contains(node.getX().get(), node.getY().get(), node.getWidth().get(), node.getHeight().get())) {
                 nodesToSelect.add(node);
             }
         }
@@ -530,7 +530,7 @@ public class SelectionCreator {
 
             for (final GJoint joint : connection.getJoints()) {
 
-                if (selection.contains(joint.getX(), joint.getY())) {
+                if (selection.contains(joint.getX().get(), joint.getY().get())) {
                     jointsToSelect.add(joint);
                 }
             }
