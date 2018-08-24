@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.flowingcode.addons.applayout.AppLayout;
 import com.flowingcode.addons.applayout.PaperCard;
 import com.flowingcode.addons.applayout.menu.MenuItem;
-
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.notification.Notification;
@@ -62,16 +62,16 @@ public class MainView extends VerticalLayout {
 		VerticalLayout mainLayout = new VerticalLayout();
 		mainLayout.setHeight("500px");
 
-		HorizontalLayout searchLayout = new HorizontalLayout();
-		mainLayout.add(searchLayout);
+		
 
-		TextField searchTextField = new TextField();
-		searchLayout.add(searchTextField);
-		searchTextField.setHeight("45px");
-		searchTextField.setWidth("300px");
+		Button button = new Button("add", event -> {
+
+			graphEditor.addNode();
+
+		});
+		mainLayout.add(button);
 
 		graphEditor = new GraphEditor();
-
 		graphEditor.setSizeFull();
 		graphEditor.setHeight("100%");
 		mainLayout.add(graphEditor);

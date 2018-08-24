@@ -17,20 +17,14 @@ public class GraphEditor extends Component implements HasSize, HasStyle {
 		setId("graph-editor");
 
 		getStyle().set("background", "url('/images/grid.gif')");
-		
-		String initScript="var graph = new mxGraph($0); "
-				+ "new mxRubberband(graph);"
-				+ "var parent = graph.getDefaultParent();"
-				  
-				+"graph.getModel().beginUpdate();"
-				+"try{" 
-				+"var v1 = graph.insertVertex(parent, null, 'Hello,', 20, 20, 80, 30);"
-				+"}finally{ graph.getModel().endUpdate();}";
-				
-				
-						
-		
-		
+
+		String initScript = "$0.dataset.graph = new mxGraph($0); " + "new mxRubberband($0.dataset.graph);"
+				+ "$0.dataset.parent = $0.dataset.graph.getDefaultParent();"
+
+				+ "$0.dataset.graph.getModel().beginUpdate();" + "try{"
+				+ "var v1 = $0.dataset.graph.insertVertex($0.dataset.graph , null, 'Hello,', 20, 20, 80, 30);"
+				+ "}finally{ $0.dataset.graph.getModel().endUpdate();}";
+
 		UI.getCurrent().getPage().executeJavaScript(initScript, getElement());
 		disableContextMenu();
 	}
@@ -38,6 +32,16 @@ public class GraphEditor extends Component implements HasSize, HasStyle {
 	public void disableContextMenu() {
 
 		UI.getCurrent().getPage().executeJavaScript("mxEvent.disableContextMenu($0);", getElement());
+
+	}
+
+	public void addNode() {
+
+		String script = "graph.getModel().beginUpdate();" + "try{"
+				+ "var v1 = graph.insertVertex(parent, null, 'Hello,', 20, 20, 80, 30);"
+				+ "}finally{ graph.getModel().endUpdate();}";
+
+		UI.getCurrent().getPage().executeJavaScript(script, getElement());
 
 	}
 
