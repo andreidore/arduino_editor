@@ -30,6 +30,8 @@ public class MainView extends VerticalLayout {
 
 	private VerticalLayout container = new VerticalLayout();
 
+	private GraphEditor graphEditor;
+
 	public MainView() {
 
 		container.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
@@ -68,15 +70,11 @@ public class MainView extends VerticalLayout {
 		searchTextField.setHeight("45px");
 		searchTextField.setWidth("300px");
 
-		grid = new Grid<>();
+		graphEditor = new GraphEditor();
 
-		grid.setSizeFull();
-		grid.setHeight("100%");
-		mainLayout.add(grid);
-
-		grid.addColumn(map -> map.get("docid"));
-		grid.addColumn(map -> map.get("linecost"));
-		grid.addColumn(map -> map.get("worktype"));
+		graphEditor.setSizeFull();
+		graphEditor.setHeight("100%");
+		mainLayout.add(graphEditor);
 
 		H3 label = new H3();
 		label.setSizeFull();
