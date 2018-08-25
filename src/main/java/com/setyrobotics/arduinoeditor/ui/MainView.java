@@ -60,7 +60,7 @@ public class MainView extends VerticalLayout {
 		container.removeAll();
 
 		VerticalLayout mainLayout = new VerticalLayout();
-		mainLayout.setHeight("500px");
+		mainLayout.setHeight("600px");
 
 		
 

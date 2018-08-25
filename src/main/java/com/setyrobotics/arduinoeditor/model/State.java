@@ -1,17 +1,17 @@
 package com.setyrobotics.arduinoeditor.model;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import java.util.ArrayList;
+import java.util.List;
 
 public class State {
 
-	private ObservableList<Node> nodes;
+	private List<Node> nodes;
 
 	public State() {
-		nodes = FXCollections.observableArrayList();
+		nodes = new ArrayList<>();
 	}
 
-	public ObservableList<Node> getNodes() {
+	public List<Node> getNodes() {
 		return nodes;
 	}
 

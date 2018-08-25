@@ -5,15 +5,24 @@ import javafx.beans.property.StringProperty;
 
 public abstract class AbstractNode implements Node {
 
-	private SimpleStringProperty name;
+	private String name;
+	private int id;
 
-	public AbstractNode() {
-		this.name = new SimpleStringProperty();
+	public AbstractNode(int id, String name) {
+		this.name = name;
+		this.id = id;
 	}
 
-	@Override
-	public StringProperty getName() {
+	public String getName() {
 		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 }
