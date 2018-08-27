@@ -23,7 +23,7 @@
             }
         },
         attrs: {
-            '.label': { text: 'Model', 'ref-x': .5, 'ref-y': .2 },
+            '.label': { text: 'Button', 'ref-x': .5, 'ref-y': .2 },
             rect: { fill: '#2ECC71' }
         }
     }).addTo(graph);
