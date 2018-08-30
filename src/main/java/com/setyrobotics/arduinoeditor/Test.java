@@ -1,10 +1,5 @@
 package com.setyrobotics.arduinoeditor;
 
-import com.github.graphfx.Graph;
-import com.github.graphfx.view.GraphView;
-import com.setyrobotics.arduinoeditor.model.button.Button;
-import com.setyrobotics.arduinoeditor.skin.button.ButtonSkin;
-
 import eu.mihosoft.vrl.workflow.Connector;
 import eu.mihosoft.vrl.workflow.FlowFactory;
 import eu.mihosoft.vrl.workflow.VFlow;
@@ -19,48 +14,48 @@ import javafx.stage.Stage;
 
 public class Test extends Application {
 
-	@Override
-	public void start(Stage primaryStage) {
-		final BorderPane root = new BorderPane();
+  @Override
+  public void start(Stage primaryStage) {
+    final BorderPane root = new BorderPane();
 
-		// create a flow object
-		VFlow flow = FlowFactory.newFlow();
+    // create a flow object
+    VFlow flow = FlowFactory.newFlow();
 
-		// add two nodes to the flow
-		VNode n1 = flow.newNode();
-		VNode n2 = flow.newNode();
+    // add two nodes to the flow
+    VNode n1 = flow.newNode();
+    VNode n2 = flow.newNode();
 
-		// create input and output connectors of type "default-type"
-		Connector inN1 = n1.addInput("default-type");
-		Connector outN1 = n1.addOutput("default-type");
-		Connector inN2 = n2.addInput("default-type");
-		Connector outN2 = n2.addOutput("default-type");
+    // create input and output connectors of type "default-type"
+    Connector inN1 = n1.addInput("default-type");
+    Connector outN1 = n1.addOutput("default-type");
+    Connector inN2 = n2.addInput("default-type");
+    Connector outN2 = n2.addOutput("default-type");
 
-		// create a connections
-		flow.connect(outN1, inN2);
+    // create a connections
+    flow.connect(outN1, inN2);
 
-		flow.setVisible(true);
+    flow.setVisible(true);
 
-		// create a zoomable canvas
-		VCanvas canvas = new VCanvas();
-		Pane root1 = (Pane) canvas.getContent();
+    // create a zoomable canvas
+    VCanvas canvas = new VCanvas();
+    Pane root1 = (Pane) canvas.getContent();
 
-		// creating a skin factory and attach it to the flow
-		FXSkinFactory skinFactory = new FXSkinFactory(root1);
-		flow.setSkinFactories(skinFactory);
+    // creating a skin factory and attach it to the flow
+    FXSkinFactory skinFactory = new FXSkinFactory(root1);
+    flow.setSkinFactories(skinFactory);
 
-		root.setCenter(canvas);
+    root.setCenter(canvas);
 
-		final Scene scene = new Scene(root, 1024, 768);
-		scene.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
+    final Scene scene = new Scene(root, 1024, 768);
+    scene.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
 
-		primaryStage.setScene(scene);
-		primaryStage.show();
+    primaryStage.setScene(scene);
+    primaryStage.show();
 
-	}
+  }
 
-	public static void main(String[] args) {
-		launch(args);
-	}
+  public static void main(String[] args) {
+    launch(args);
+  }
 
 }

@@ -4,6 +4,6 @@ import javafx.beans.property.StringProperty;
 
 public interface Node {
 
-	StringProperty getName();
+  StringProperty getName();
 
 }

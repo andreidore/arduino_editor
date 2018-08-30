@@ -7,21 +7,21 @@ import javafx.collections.ObservableList;
 
 public class Project {
 
-	private StringProperty name;
+  private StringProperty name;
 
-	private ObservableList<State> states;
+  private ObservableList<State> states;
 
-	public Project() {
-		name = new SimpleStringProperty("No name");
-		states = FXCollections.observableArrayList();
-	}
+  public Project() {
+    name = new SimpleStringProperty("No name");
+    states = FXCollections.observableArrayList();
+  }
 
-	public StringProperty getName() {
-		return name;
-	}
+  public StringProperty getName() {
+    return name;
+  }
 
-	public ObservableList<State> getStates() {
-		return states;
-	}
+  public ObservableList<State> getStates() {
+    return states;
+  }
 
 }

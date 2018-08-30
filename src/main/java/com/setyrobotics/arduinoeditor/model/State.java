@@ -5,14 +5,14 @@ import javafx.collections.ObservableList;
 
 public class State {
 
-	private ObservableList<Node> nodes;
+  private ObservableList<Node> nodes;
 
-	public State() {
-		nodes = FXCollections.observableArrayList();
-	}
+  public State() {
+    nodes = FXCollections.observableArrayList();
+  }
 
-	public ObservableList<Node> getNodes() {
-		return nodes;
-	}
+  public ObservableList<Node> getNodes() {
+    return nodes;
+  }
 
 }

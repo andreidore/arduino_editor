@@ -2,10 +2,10 @@ package com.setyrobotics.arduinoeditor.context;
 
 public interface Context {
 
-	String PROJECT = "project";
+  String PROJECT = "project";
 
-	Object get(String key);
+  Object get(String key);
 
-	void put(String key, Object value);
+  void put(String key, Object value);
 
 }
