@@ -41,7 +41,7 @@ public class MainView extends VerticalLayout {
 		this.setSpacing(false);
 		this.setMargin(false);
 
-		AppLayout app = new AppLayout("Elastic editor");
+		AppLayout app = new AppLayout("State editor");
 		app.setMenuItems(new MenuItem("Home", () -> showHome()), new MenuItem("Columns", () -> showSettings("About")));
 
 		/*
@@ -62,8 +62,6 @@ public class MainView extends VerticalLayout {
 		VerticalLayout mainLayout = new VerticalLayout();
 		mainLayout.setHeight("600px");
 
-		
-
 		Button button = new Button("add", event -> {
 
 			graphEditor.addNode();
@@ -71,10 +69,22 @@ public class MainView extends VerticalLayout {
 		});
 		mainLayout.add(button);
 
+		HorizontalLayout editorLayout = new HorizontalLayout();
+		mainLayout.add(editorLayout);
+
+		VerticalLayout componentLayout = new VerticalLayout();
+		editorLayout.add(componentLayout);
+
+		TextField componentSearch = new TextField("", "Component");
+		componentLayout.add(componentSearch);
+
+		VerticalLayout componentListLayout = new VerticalLayout();
+		componentLayout.add(componentListLayout);
+
 		graphEditor = new GraphEditor();
 		graphEditor.setSizeFull();
 		graphEditor.setHeight("100%");
-		mainLayout.add(graphEditor);
+		editorLayout.add(graphEditor);
 
 		H3 label = new H3();
 		label.setSizeFull();
