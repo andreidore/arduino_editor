@@ -45,47 +45,71 @@
 			<version>2.6</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.github.jgraph/jgraphx -->
+
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-collections4 -->
 		<dependency>
-			<groupId>com.github.jgraph</groupId>
-			<artifactId>jgraphx</artifactId>
-			<version>v3.9.8</version>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-collections4</artifactId>
+			<version>4.2</version>
 		</dependency>
-		
-		<!-- 
+
+		<!-- https://mvnrepository.com/artifact/com.thoughtworks.xstream/xstream -->
 		<dependency>
-			<groupId>org.eclipse.emf</groupId>
-			<artifactId>edit</artifactId>
-			<version>2.3.0-v200706262000</version>
-			
-			<exclusions>
-				<exclusion>
-					<groupId>*</groupId>
-					<artifactId>*</artifactId>
-				</exclusion>
-			</exclusions>
+			<groupId>com.thoughtworks.xstream</groupId>
+			<artifactId>xstream</artifactId>
+			<version>1.4.10</version>
 		</dependency>
-		
-		
-		
+
+		<!-- https://mvnrepository.com/artifact/eu.mihosoft.jfx.scaledfx/scaledfx -->
 		<dependency>
-			<groupId>org.eclipse.emf</groupId>
-			<artifactId>org.eclipse.emf.ecore.xmi</artifactId>
-			<version>2.9.1-v20131212-0545</version>
+			<groupId>eu.mihosoft.jfx.scaledfx</groupId>
+			<artifactId>scaledfx</artifactId>
+			<version>0.4</version>
 		</dependency>
-		
-		
-			<dependency>
-			<groupId>org.eclipse.emf</groupId>
-			<artifactId>org.eclipse.emf.ecore</artifactId>
-			<version>2.9.2-v20131212-0545</version>
-		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-math3 -->
 		<dependency>
-			<groupId>org.eclipse.emf</groupId>
-			<artifactId>org.eclipse.emf.common</artifactId>
-			<version>2.9.2-v20131212-0545</version>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-math3</artifactId>
+			<version>3.6.1</version>
 		</dependency>
- -->
+
+		<!-- https://mvnrepository.com/artifact/colt/colt -->
+		<dependency>
+			<groupId>colt</groupId>
+			<artifactId>colt</artifactId>
+			<version>1.2.0</version>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/net.sf.jung/jung-graph-impl -->
+		<dependency>
+			<groupId>net.sf.jung</groupId>
+			<artifactId>jung-graph-impl</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/net.sf.jung/jung-api -->
+		<dependency>
+			<groupId>net.sf.jung</groupId>
+			<artifactId>jung-api</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+
+
+		<!-- https://mvnrepository.com/artifact/net.sf.jung/jung-visualization -->
+		<dependency>
+			<groupId>net.sf.jung</groupId>
+			<artifactId>jung-visualization</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+
+
+
+
+
+
+
 
 
 	</dependencies>

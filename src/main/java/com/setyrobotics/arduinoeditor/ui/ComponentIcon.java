@@ -125,3 +125,4 @@ public class ComponentIcon extends AnchorPane {
 		break;
 		}
 	}
+}
