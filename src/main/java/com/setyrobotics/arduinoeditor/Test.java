@@ -31,7 +31,7 @@ public class Test extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		final BorderPane root = new BorderPane();
-
+  
 		 swingNode = new SwingNode();
 
 		root.setCenter(swingNode);
