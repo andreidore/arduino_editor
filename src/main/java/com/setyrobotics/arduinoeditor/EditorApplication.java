@@ -17,7 +17,7 @@ public class EditorApplication extends Application {
 
   private static final String FONT_AWESOME = "fontawesome.ttf";
 
-  private static final String STYLESHEET = "app.css";
+  private static final String STYLESHEET = "css/application.css";
 
   protected ConfigurableApplicationContext springContext;
   protected StageManager stageManager;
@@ -54,7 +54,8 @@ public class EditorApplication extends Application {
 
       scene = stageManager.switchScene(FxmlView.MAIN);
 
-      // scene.getStylesheets().add(getClass().getClassLoader().getResource(STYLESHEET).toExternalForm());
+      scene.getStylesheets()
+          .add(getClass().getClassLoader().getResource(STYLESHEET).toExternalForm());
 
     } catch (Exception e) {
 
