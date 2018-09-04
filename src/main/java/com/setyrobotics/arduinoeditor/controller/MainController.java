@@ -7,6 +7,9 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import com.setyrobotics.arduinoeditor.config.StageManager;
 import com.setyrobotics.arduinoeditor.context.Context;
+import com.setyrobotics.arduinoeditor.model.Node;
+import com.setyrobotics.arduinoeditor.model.Project;
+import com.setyrobotics.arduinoeditor.service.ProjectService;
 import eu.mihosoft.scaledfx.ScaleBehavior;
 import eu.mihosoft.vrl.workflow.Connector;
 import eu.mihosoft.vrl.workflow.FlowFactory;
@@ -16,9 +19,13 @@ import eu.mihosoft.vrl.workflow.VisualizationRequest;
 import eu.mihosoft.vrl.workflow.fx.FXSkinFactory;
 import eu.mihosoft.vrl.workflow.fx.VCanvas;
 import javafx.application.Platform;
+import javafx.beans.property.adapter.JavaBeanStringPropertyBuilder;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ListView;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -32,6 +39,14 @@ public class MainController implements Initializable {
   @FXML
   private StackPane rightPane;
 
+  @FXML
+  private TabPane tabPane;
+
+  @FXML
+  private Tab statePage;
+
+  @FXML
+  private ListView<Node> componentList;
 
   @Lazy
   @Autowired
@@ -40,14 +55,21 @@ public class MainController implements Initializable {
   @Autowired
   private Context context;
 
+  @Autowired
+  private ProjectService projectService;
+
+  private VFlow stateFlow;
+
+  private Project project;
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
 
 
+    Project project = projectService.getProject();
 
     // create a flow object
     VFlow flow = FlowFactory.newFlow();
-
 
     // add two nodes to the flow
     VNode n1 = flow.newNode();
@@ -57,7 +79,6 @@ public class MainController implements Initializable {
       System.out.println(event);
 
     });
-
 
     VNode n11 = flow.newNode();
     n11.setTitle("Button 1");
@@ -92,7 +113,6 @@ public class MainController implements Initializable {
     Connector in1N2 = n2.addInput("digital");
     in1N2.getVisualizationRequest().set(VisualizationRequest.KEY_CONNECTOR_AUTO_LAYOUT, true);
 
-
     // create a connections
     flow.connect(outN1, inN2);
 
@@ -105,6 +125,61 @@ public class MainController implements Initializable {
     // canvas.setAspectScale(false);
     canvas.setTranslateToMinNodePos(false);
 
+    Pane root = (Pane) canvas.getContent();
+    // root.setStyle("-fx-background-color: red");
+
+    // creating a skin factory and attach it to the flow
+    FXSkinFactory skinFactory = new FXSkinFactory(root);
+
+    flow.setSkinFactories(skinFactory);
+
+    rightPane.getChildren().add(canvas);
+
+
+    initMainPane();
+
+  }
+
+  private void initMainPane() {
+
+    this.project = projectService.getProject();
+
+    tabPane.getTabs().clear();
+
+
+    initStatePane();
+  }
+
+  private void initStatePane() {
+
+    // create a flow object
+    stateFlow = FlowFactory.newFlow();
+
+    project.getStates().stream().forEach(s -> {
+
+      VNode stateNodeFlow = stateFlow.newNode();
+
+      try {
+        s.getName()
+            .bind(JavaBeanStringPropertyBuilder.create().bean(stateNodeFlow).name("title").build());
+      } catch (NoSuchMethodException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+
+    });
+
+
+
+
+    stateFlow.setVisible(true);
+
+    // create a zoomable canvas
+    VCanvas canvas = new VCanvas();
+    // canvas.setAutoRescale(false);
+    canvas.setScaleBehavior(ScaleBehavior.IF_NECESSARY);
+    // canvas.setAspectScale(false);
+    canvas.setTranslateToMinNodePos(false);
 
     Pane root = (Pane) canvas.getContent();
     // root.setStyle("-fx-background-color: red");
@@ -112,12 +187,9 @@ public class MainController implements Initializable {
     // creating a skin factory and attach it to the flow
     FXSkinFactory skinFactory = new FXSkinFactory(root);
 
-
-    flow.setSkinFactories(skinFactory);
+    stateFlow.setSkinFactories(skinFactory);
 
     rightPane.getChildren().add(canvas);
-
-
 
   }
 
