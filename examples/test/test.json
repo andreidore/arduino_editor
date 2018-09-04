@@ -1,0 +1,11 @@
+{
+	"name": "Project Test",
+	"states": [
+		{
+			"name": "State1"
+		},
+		{
+			"name": "State2"
+		}
+	]
+}

@@ -1,5 +1,7 @@
 package com.setyrobotics.arduinoeditor.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +21,6 @@ import eu.mihosoft.vrl.workflow.VisualizationRequest;
 import eu.mihosoft.vrl.workflow.fx.FXSkinFactory;
 import eu.mihosoft.vrl.workflow.fx.VCanvas;
 import javafx.application.Platform;
-import javafx.beans.property.adapter.JavaBeanStringPropertyBuilder;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,11 +28,16 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.stage.FileChooser;
 
 @Controller
 public class MainController implements Initializable {
+
+  @FXML
+  private AnchorPane root;
 
   @FXML
   private TextArea console;
@@ -133,7 +139,7 @@ public class MainController implements Initializable {
 
     flow.setSkinFactories(skinFactory);
 
-    rightPane.getChildren().add(canvas);
+    // rightPane.getChildren().add(canvas);
 
 
     initMainPane();
@@ -147,10 +153,12 @@ public class MainController implements Initializable {
     tabPane.getTabs().clear();
 
 
+
     initStatePane();
   }
 
   private void initStatePane() {
+
 
     // create a flow object
     stateFlow = FlowFactory.newFlow();
@@ -159,16 +167,14 @@ public class MainController implements Initializable {
 
       VNode stateNodeFlow = stateFlow.newNode();
 
-      try {
-        s.getName()
-            .bind(JavaBeanStringPropertyBuilder.create().bean(stateNodeFlow).name("title").build());
-      } catch (NoSuchMethodException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-      }
+      stateNodeFlow.titleProperty().bind(s.getName());
+      stateNodeFlow.xProperty().bindBidirectional(s.getX());
+      stateNodeFlow.yProperty().bindBidirectional(s.getY());
+      stateNodeFlow.widthProperty().bindBidirectional(s.getWidth());
+      stateNodeFlow.heightProperty().bindBidirectional(s.getHeight());
+
 
     });
-
 
 
 
@@ -189,12 +195,66 @@ public class MainController implements Initializable {
 
     stateFlow.setSkinFactories(skinFactory);
 
-    rightPane.getChildren().add(canvas);
+    Tab stateTab = new Tab("State", canvas);
+
+    tabPane.getTabs().add(stateTab);
+
 
   }
 
   public void handleExitAction(ActionEvent event) {
     Platform.exit();
+  }
+
+  public void handleNewAction(ActionEvent event) {
+
+    projectService.newProject();
+
+    this.project = projectService.getProject();
+
+    initMainPane();
+
+  }
+
+  public void handleLoadAction(ActionEvent event) {
+
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setTitle("Load");
+    File file = fileChooser.showOpenDialog(root.getScene().getWindow());
+
+    if (file != null) {
+      try {
+        projectService.loadProject(file.toPath());
+      } catch (IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+
+      this.project = projectService.getProject();
+      initMainPane();
+    }
+
+
+  }
+
+  public void handleSaveAction(ActionEvent event) {
+
+
+    FileChooser fileChooser = new FileChooser();
+    fileChooser.setTitle("Save");
+    File file = fileChooser.showSaveDialog(root.getScene().getWindow());
+
+    if (file != null) {
+      try {
+        projectService.saveProject(file.toPath());
+      } catch (IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+
+
+    }
+
   }
 
   private void addTextToConsole(String text) {

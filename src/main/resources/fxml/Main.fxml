@@ -19,91 +19,11 @@
 			<menus>
 				<Menu text="File">
 					<items>
-						<MenuItem text="Load File" />
-						<Menu text="Load Sample">
-							<items>
-								<MenuItem text="Default Skins - Small" />
-								<MenuItem text="Default Skins - Large" />
-								<SeparatorMenuItem />
-								<MenuItem text="Tree Skins" />
-								<MenuItem text="Titled Skins" />
-							</items>
-						</Menu>
-						<MenuItem text="Save" />
-						<MenuItem text="Clear All" />
+						<MenuItem text="New" onAction="#handleNewAction" />
+						<MenuItem text="Load" onAction="#handleLoadAction" />
+						<MenuItem text="Save" onAction="#handleSaveAction" />
 						<SeparatorMenuItem />
-						<MenuItem text="Exit" />
-					</items>
-				</Menu>
-				<Menu text="Edit">
-					<items>
-						<MenuItem text="Undo" accelerator="Shortcut+Z" />
-						<MenuItem text="Redo" accelerator="Shortcut+Y" />
-						<SeparatorMenuItem />
-						<MenuItem text="Cut" accelerator="Shortcut+X" />
-						<MenuItem text="Copy" accelerator="Shortcut+C" />
-						<MenuItem text="Paste" accelerator="Shortcut+V" />
-						<SeparatorMenuItem />
-						<!-- Added blank spaces to force menu to be wider. -->
-						<MenuItem text="Select All          "
-							accelerator="Shortcut+A" />
-						<MenuItem text="Delete" accelerator="Delete" />
-					</items>
-				</Menu>
-				<Menu text="Actions">
-					<items>
-						<MenuItem text="Add Node" accelerator="Shortcut+N" />
-						<MenuItem text="Add Connector" fx:id="addConnectorButton"
-							accelerator="Shortcut+E" />
-						<MenuItem text="Clear Connectors"
-							fx:id="clearConnectorsButton" accelerator="Shortcut+W" />
-						<Menu fx:id="connectorTypeMenu" text="Connector Type">
-							<items>
-								<RadioMenuItem fx:id="inputConnectorTypeButton"
-									text="Input" selected="true" />
-								<RadioMenuItem fx:id="outputConnectorTypeButton"
-									text="Output" />
-							</items>
-						</Menu>
-						<Menu fx:id="connectorPositionMenu" text="Connector Position">
-							<items>
-								<RadioMenuItem fx:id="leftConnectorPositionButton"
-									text="Left" selected="true" />
-								<RadioMenuItem
-									fx:id="rightConnectorPositionButton" text="Right" />
-								<RadioMenuItem fx:id="topConnectorPositionButton"
-									text="Top" />
-								<RadioMenuItem
-									fx:id="bottomConnectorPositionButton" text="Bottom" />
-							</items>
-						</Menu>
-					</items>
-				</Menu>
-				<Menu text="Settings">
-					<items>
-						<RadioMenuItem fx:id="showGridButton"
-							text="Show Grid" />
-						<RadioMenuItem fx:id="snapToGridButton"
-							text="Snap to Grid" />
-						<Menu text="Skin Type">
-							<items>
-								<RadioMenuItem fx:id="defaultSkinButton"
-									text="Default" selected="true" />
-								<RadioMenuItem fx:id="treeSkinButton" text="Tree" />
-								<RadioMenuItem fx:id="titledSkinButton"
-									text="Titled" />
-							</items>
-						</Menu>
-						<!-- Added blank spaces to force menu to be wider. -->
-						<Menu fx:id="intersectionStyle" text="Intersection Style  ">
-							<items>
-								<RadioMenuItem fx:id="detouredStyleButton"
-									text="Detours" selected="true" />
-								<RadioMenuItem fx:id="gappedStyleButton"
-									text="Gaps" />
-							</items>
-						</Menu>
-						<Menu text="Zoom Level" fx:id="zoomOptions" />
+						<MenuItem text="Exit" onAction="#handleExitAction" />
 					</items>
 				</Menu>
 			</menus>
