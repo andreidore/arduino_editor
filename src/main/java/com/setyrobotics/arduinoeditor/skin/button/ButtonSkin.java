@@ -1,7 +1,7 @@
 package com.setyrobotics.arduinoeditor.skin.button;
 
 import com.github.graphfx.skin.NodeSkin;
-import com.setyrobotics.arduinoeditor.model.button.Button;
+import com.setyrobotics.arduinoeditor.model.component.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;

@@ -9,20 +9,23 @@ import javafx.collections.ObservableList;
 
 public class State {
 
-  private ObservableList<Node> nodes;
+  private final ObservableList<Node> nodes;
 
-  private StringProperty name;
+  private final ObservableList<Connection> connections;
 
-  private DoubleProperty width;
+  private final StringProperty name;
 
-  private DoubleProperty height;
+  private final DoubleProperty width;
 
-  private DoubleProperty x;
+  private final DoubleProperty height;
 
-  private DoubleProperty y;
+  private final DoubleProperty x;
+
+  private final DoubleProperty y;
 
   public State() {
     nodes = FXCollections.observableArrayList();
+    connections = FXCollections.observableArrayList();
     name = new SimpleStringProperty("Main");
     width = new SimpleDoubleProperty(200);
     height = new SimpleDoubleProperty(200);
@@ -54,6 +57,14 @@ public class State {
   public DoubleProperty getY() {
     return y;
   }
+
+  @Override
+  public String toString() {
+    return "State [nodes=" + nodes + ", connections=" + connections + ", name=" + name + ", width="
+        + width + ", height=" + height + ", x=" + x + ", y=" + y + "]";
+  }
+
+ 
 
 
 

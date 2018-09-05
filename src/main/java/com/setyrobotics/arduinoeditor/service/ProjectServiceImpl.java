@@ -16,8 +16,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.setyrobotics.arduinoeditor.gson.RuntimeTypeAdapterFactory;
+import com.setyrobotics.arduinoeditor.model.Node;
 import com.setyrobotics.arduinoeditor.model.Project;
 import com.setyrobotics.arduinoeditor.model.State;
+import com.setyrobotics.arduinoeditor.model.component.Button;
+import com.setyrobotics.arduinoeditor.model.component.Led;
 
 @Service("projectService")
 public class ProjectServiceImpl implements ProjectService {
@@ -26,9 +31,20 @@ public class ProjectServiceImpl implements ProjectService {
 
   private Project project;
 
+  private Gson fxGson;
+
   @PostConstruct
   public void init() {
     newProject();
+
+
+    RuntimeTypeAdapterFactory<Node> runtimeTypeAdapterFactory =
+        RuntimeTypeAdapterFactory.of(Node.class, "type").registerSubtype(Button.class, "button")
+            .registerSubtype(Led.class, "led");
+
+    GsonBuilder builder = new GsonBuilder().registerTypeAdapterFactory(runtimeTypeAdapterFactory);
+
+    fxGson = FxGson.addFxSupport(builder).setPrettyPrinting().create();
   }
 
   @Override
@@ -41,18 +57,18 @@ public class ProjectServiceImpl implements ProjectService {
       throws UnsupportedEncodingException, FileNotFoundException, IOException {
 
 
-    Gson fxGson = FxGson.create();
 
     try (Reader reader = new InputStreamReader(new FileInputStream(path.toFile()), "utf-8")) {
       project = fxGson.fromJson(reader, Project.class);
     }
+
+    System.out.println(project);
 
   }
 
   @Override
   public void saveProject(Path path)
       throws UnsupportedEncodingException, FileNotFoundException, IOException {
-    Gson fxGson = FxGson.fullBuilder().setPrettyPrinting().create();
 
     try (Writer writer = new OutputStreamWriter(new FileOutputStream(path.toFile()), "utf-8")) {
       fxGson.toJson(project, writer);

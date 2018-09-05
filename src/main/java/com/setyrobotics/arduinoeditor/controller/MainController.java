@@ -11,6 +11,7 @@ import com.setyrobotics.arduinoeditor.config.StageManager;
 import com.setyrobotics.arduinoeditor.context.Context;
 import com.setyrobotics.arduinoeditor.model.Node;
 import com.setyrobotics.arduinoeditor.model.Project;
+import com.setyrobotics.arduinoeditor.model.State;
 import com.setyrobotics.arduinoeditor.service.ProjectService;
 import eu.mihosoft.scaledfx.ScaleBehavior;
 import eu.mihosoft.vrl.workflow.Connector;
@@ -64,7 +65,7 @@ public class MainController implements Initializable {
   @Autowired
   private ProjectService projectService;
 
-  private VFlow stateFlow;
+  private VFlow statesFlow;
 
   private Project project;
 
@@ -152,20 +153,62 @@ public class MainController implements Initializable {
 
     tabPane.getTabs().clear();
 
+    for (State state : this.project.getStates()) {
+
+      initStatePane(state);
+
+    }
 
 
-    initStatePane();
+
+    initStatesPane();
   }
 
-  private void initStatePane() {
+  private void initStatePane(State state) {
 
 
     // create a flow object
-    stateFlow = FlowFactory.newFlow();
+    VFlow stateFlow = FlowFactory.newFlow();
+
+    state.getNodes().stream().forEach(s -> {
+
+      VNode node = statesFlow.newNode();
+
+
+
+    });
+
+
+    stateFlow.setVisible(true);
+
+    // create a zoomable canvas
+    VCanvas canvas = new VCanvas();
+    canvas.setScaleBehavior(ScaleBehavior.IF_NECESSARY);
+    canvas.setTranslateToMinNodePos(false);
+
+    Pane root = (Pane) canvas.getContent();
+    FXSkinFactory skinFactory = new FXSkinFactory(root);
+
+    stateFlow.setSkinFactories(skinFactory);
+
+    Tab stateTab = new Tab("Tab", canvas);
+    stateTab.textProperty().bind(state.getName());
+
+    tabPane.getTabs().add(stateTab);
+
+
+  }
+
+
+  private void initStatesPane() {
+
+
+    // create a flow object
+    statesFlow = FlowFactory.newFlow();
 
     project.getStates().stream().forEach(s -> {
 
-      VNode stateNodeFlow = stateFlow.newNode();
+      VNode stateNodeFlow = statesFlow.newNode();
 
       stateNodeFlow.titleProperty().bind(s.getName());
       stateNodeFlow.xProperty().bindBidirectional(s.getX());
@@ -178,7 +221,7 @@ public class MainController implements Initializable {
 
 
 
-    stateFlow.setVisible(true);
+    statesFlow.setVisible(true);
 
     // create a zoomable canvas
     VCanvas canvas = new VCanvas();
@@ -193,7 +236,7 @@ public class MainController implements Initializable {
     // creating a skin factory and attach it to the flow
     FXSkinFactory skinFactory = new FXSkinFactory(root);
 
-    stateFlow.setSkinFactories(skinFactory);
+    statesFlow.setSkinFactories(skinFactory);
 
     Tab stateTab = new Tab("State", canvas);
 
