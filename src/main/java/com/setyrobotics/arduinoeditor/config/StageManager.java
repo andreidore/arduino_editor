@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import com.setyrobotics.arduinoeditor.ui.SpringFXMLLoader;
 import com.setyrobotics.arduinoeditor.view.FxmlView;
 import javafx.application.Platform;
 import javafx.scene.Parent;

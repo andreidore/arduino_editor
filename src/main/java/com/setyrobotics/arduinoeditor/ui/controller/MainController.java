@@ -1,4 +1,4 @@
-package com.setyrobotics.arduinoeditor.controller;
+package com.setyrobotics.arduinoeditor.ui.controller;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,7 +29,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
@@ -38,7 +37,7 @@ import javafx.stage.FileChooser;
 public class MainController implements Initializable {
 
   @FXML
-  private AnchorPane root;
+  private StackPane root;
 
   @FXML
   private TextArea console;

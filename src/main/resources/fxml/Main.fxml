@@ -1,69 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.*?>
+<?import javafx.geometry.Insets?>
+<?import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.*?>
-<?import javafx.embed.swing.SwingNode?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ListView?>
+<?import java.lang.String?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.scene.layout.FlowPane?>
+<?import com.github.andreidore.digitizer2d.ui.*?>
+<?import com.github.andreidore.digitizer2d.ui.digitizer.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import com.jfoenix.controls.JFXButton?>
 
-<AnchorPane fx:id="root" xmlns:fx="http://javafx.com/fxml"
-	fx:controller="com.setyrobotics.arduinoeditor.controller.MainController">
-	<VBox fillWidth="true" AnchorPane.leftAnchor="0"
-		AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0"
-		AnchorPane.bottomAnchor="0">
-		<MenuBar fx:id="menuBar">
-			<menus>
-				<Menu text="File">
-					<items>
-						<MenuItem text="New" onAction="#handleNewAction" />
-						<MenuItem text="Load" onAction="#handleLoadAction" />
-						<MenuItem text="Save" onAction="#handleSaveAction" />
-						<SeparatorMenuItem />
-						<MenuItem text="Exit" onAction="#handleExitAction" />
-					</items>
-				</Menu>
-			</menus>
-		</MenuBar>
+<StackPane fx:id="root" xmlns:fx="http://javafx.com/fxml/1"
+	xmlns="http://javafx.com/javafx/2.2"
+	fx:controller="com.setyrobotics.arduinoeditor.ui.controller.MainController">
+
+	<!-- Header -->
+	<BorderPane>
+		<top>
+			<VBox spacing="20">
+				<JFXToolbar fx:id="toolBar">
+					<leftItems>
+						<JFXRippler maskType="CIRCLE"
+							style="-fx-ripple-color:WHITE;">
+							<StackPane fx:id="titleBurgerContainer">
+								<JFXHamburger fx:id="titleBurger">
+									<HamburgerBackArrowBasicTransition />
+								</JFXHamburger>
+							</StackPane>
+						</JFXRippler>
+						<Label>Digitizer2D</Label>
+					</leftItems>
+
+					<rightItems>
+						<Label fx:id="objectsLabel" />
+						<Label fx:id="pointsLabel" />
+						<Region minWidth="200" />
+						<JFXButton fx:id="settingsButton" />
+					</rightItems>
+				</JFXToolbar>
+			</VBox>
+		</top>
+
+		<!-- Content Area -->
+		<center>
+			<JFXDrawer fx:id="drawer" defaultDrawerSize="250"
+				direction="LEFT">
+				<styleClass>
+					<String fx:value="body" />
+				</styleClass>
+
+				<content>
+
+					<BorderPane>
+						<left>
+							<VBox>
+								<JFXButton fx:id="segmentButton" />
+								<JFXButton fx:id="curveButton" />
+								<Label />
+								<JFXButton fx:id="closeButton" />
+								<JFXButton fx:id="deleteLastShapeButton" />
+								<JFXButton fx:id="undoButton" />
+								<JFXButton fx:id="originButton" />
+
+							</VBox>
+						</left>
+						<center>
 
 
-		<AnchorPane fx:id="mainPane" prefHeight="1000">
-			<children>
-				<SplitPane fx:id="base_pane" dividerPositions="0.5"
-					maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-					minWidth="-Infinity" AnchorPane.bottomAnchor="0.0"
-					AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-					AnchorPane.topAnchor="0.0">
-					<items>
-						<VBox>
-							<TextField fx:id="searchComponentField" />
-							<ScrollPane fitToHeight="true" hbarPolicy="NEVER"
-								maxWidth="-Infinity" minWidth="-Infinity" prefWidth="200.0">
-								<padding>
-									<Insets left="8.0" top="6.0" />
-								</padding>
-								<content>
-									<ListView fx:id="componentList" />
-								</content>
-							</ScrollPane>
-						</VBox>
-						<StackPane fx:id="rightPane" />
-						<TabPane fx:id="tabPane">
-							<tabs>
-								<Tab fx:id="statePane" text="States">
-								</Tab>
+							<TabPane fx:id="tabPane">
+								<tabs>
+									<Tab fx:id="statePane" text="States">
+									</Tab>
 
-							</tabs>
-						</TabPane>
-					</items>
-				</SplitPane>
-			</children>
-		</AnchorPane>
+								</tabs>
+							</TabPane>
 
 
-	</VBox>
+						</center>
+					</BorderPane>
+				</content>
 
-</AnchorPane>
+			</JFXDrawer>
+		</center>
+		<bottom>
+			<VBox spacing="5" style="-fx-padding: 5 5 5 5;">
+				<TextArea fx:id="console" visible="false" managed="false" />
+				<HBox alignment="CENTER" spacing="10">
+					<Label fx:id="statusLabel" />
+
+
+					<Region HBox.hgrow="ALWAYS" />
+					<Label maxHeight="15">Auto-center</Label>
+					<JFXToggleButton prefWidth="100" />
+					<Label maxHeight="15">Console</Label>
+					<JFXToggleButton fx:id="consoleButton"
+						prefWidth="100" />
+				</HBox>
+			</VBox>
+		</bottom>
+	</BorderPane>
+</StackPane>
+

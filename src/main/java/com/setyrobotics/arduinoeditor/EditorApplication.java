@@ -1,13 +1,18 @@
 package com.setyrobotics.arduinoeditor;
 
+import java.io.InputStream;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
+import com.jfoenix.controls.JFXDecorator;
 import com.setyrobotics.arduinoeditor.config.StageManager;
 import com.setyrobotics.arduinoeditor.context.Context;
 import com.setyrobotics.arduinoeditor.model.Project;
+import com.setyrobotics.arduinoeditor.ui.SpringFXMLLoader;
 import com.setyrobotics.arduinoeditor.view.FxmlView;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -46,16 +51,32 @@ public class EditorApplication extends Application {
       // scene.getStylesheets().add(getClass().getResource(TREE_SKIN_STYLESHEET).toExternalForm());
       // scene.getStylesheets().add(getClass().getResource(TITLED_SKIN_STYLESHEET).toExternalForm());
 
+      SpringFXMLLoader loader = springContext.getBean(SpringFXMLLoader.class);
+
+      Parent root = loader.load("/fxml/Main.fxml");
 
 
-      Font.loadFont(getClass().getClassLoader().getResource(FONT_AWESOME).toExternalForm(), 12);
+     // Font.loadFont(getClass().getClassLoader().getResource(FONT_AWESOME).toExternalForm(), 12);
 
-      Scene scene;
+      JFXDecorator decorator = new JFXDecorator(stage, root);
+      // context.put(Context.ROOT_WINDOW_DECORATOR, decorator);
+      decorator.setCustomMaximize(true);
 
-      scene = stageManager.switchScene(FxmlView.MAIN);
+      Scene scene = new Scene(decorator);
+      final ObservableList<String> stylesheets = scene.getStylesheets();
+      stylesheets.addAll(
+          EditorApplication.class.getResource("/css/jfoenix-fonts.css").toExternalForm(),
+          EditorApplication.class.getResource("/css/jfoenix-design.css").toExternalForm(),
+          EditorApplication.class.getResource("/css/application.css").toExternalForm());
 
-      scene.getStylesheets()
-          .add(getClass().getClassLoader().getResource(STYLESHEET).toExternalForm());
+
+      stage.setScene(scene);
+      stage.setWidth(1000);
+      stage.setHeight(1000);
+      stage.setTitle("Digitizer2D");
+      stage.show();
+
+
 
     } catch (Exception e) {
 
