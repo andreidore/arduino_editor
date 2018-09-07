@@ -37,7 +37,7 @@
 								</JFXHamburger>
 							</StackPane>
 						</JFXRippler>
-						<Label>Digitizer2D</Label>
+						<Label>State Editor</Label>
 					</leftItems>
 
 					<rightItems>

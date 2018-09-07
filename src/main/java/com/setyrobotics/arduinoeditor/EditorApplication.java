@@ -1,6 +1,5 @@
 package com.setyrobotics.arduinoeditor;
 
-import java.io.InputStream;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -9,12 +8,10 @@ import com.setyrobotics.arduinoeditor.config.StageManager;
 import com.setyrobotics.arduinoeditor.context.Context;
 import com.setyrobotics.arduinoeditor.model.Project;
 import com.setyrobotics.arduinoeditor.ui.SpringFXMLLoader;
-import com.setyrobotics.arduinoeditor.view.FxmlView;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 @SpringBootApplication
@@ -55,8 +52,8 @@ public class EditorApplication extends Application {
 
       Parent root = loader.load("/fxml/Main.fxml");
 
-
-     // Font.loadFont(getClass().getClassLoader().getResource(FONT_AWESOME).toExternalForm(), 12);
+      // Font.loadFont(getClass().getClassLoader().getResource(FONT_AWESOME).toExternalForm(),
+      // 12);
 
       JFXDecorator decorator = new JFXDecorator(stage, root);
       // context.put(Context.ROOT_WINDOW_DECORATOR, decorator);
@@ -69,14 +66,11 @@ public class EditorApplication extends Application {
           EditorApplication.class.getResource("/css/jfoenix-design.css").toExternalForm(),
           EditorApplication.class.getResource("/css/application.css").toExternalForm());
 
-
       stage.setScene(scene);
       stage.setWidth(1000);
       stage.setHeight(1000);
-      stage.setTitle("Digitizer2D");
+      stage.setTitle("State Editor");
       stage.show();
-
-
 
     } catch (Exception e) {
 
