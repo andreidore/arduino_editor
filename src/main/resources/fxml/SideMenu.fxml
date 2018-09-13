@@ -11,7 +11,8 @@
 	</styleClass>
 	<JFXListView fx:id="sideMenuList">
 		<Label>New</Label>
-		<Label>Export</Label>
+		<Label>Load</Label>
+		<Label>Save</Label>
 		<Label>Exit</Label>
 	</JFXListView>
 </StackPane>

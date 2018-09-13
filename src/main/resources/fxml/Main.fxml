@@ -37,7 +37,7 @@
 								</JFXHamburger>
 							</StackPane>
 						</JFXRippler>
-						<Label>State Editor</Label>
+
 					</leftItems>
 
 					<rightItems>
@@ -63,14 +63,6 @@
 					<BorderPane>
 						<left>
 							<VBox>
-								<JFXButton fx:id="segmentButton" />
-								<JFXButton fx:id="curveButton" />
-								<Label />
-								<JFXButton fx:id="closeButton" />
-								<JFXButton fx:id="deleteLastShapeButton" />
-								<JFXButton fx:id="undoButton" />
-								<JFXButton fx:id="originButton" />
-
 							</VBox>
 						</left>
 						<center>

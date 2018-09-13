@@ -1,17 +1,21 @@
 package com.setyrobotics.arduinoeditor.config;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import com.setyrobotics.arduinoeditor.context.Context;
-import com.setyrobotics.arduinoeditor.context.DefaultContext;
 
 @Configuration
 public class ApplicationConfig {
 
+  public enum HolderKey {
+    PROJECT
+  }
+
   @Bean
-  public Context context() {
-    return new DefaultContext();
+  public Map<HolderKey, Object> holder() {
+    return new HashMap<>();
   }
 
   @Bean

@@ -8,15 +8,14 @@ import com.setyrobotics.arduinoeditor.model.Project;
 
 public interface ProjectService {
 
-  Project getProject();
-
-  void newProject();
-
-  void loadProject(final Path path)
+  Project loadProject(final Path path)
       throws UnsupportedEncodingException, FileNotFoundException, IOException;
 
 
-  void saveProject(final Path path)
+  void saveProject(final Project project, final Path path)
       throws UnsupportedEncodingException, FileNotFoundException, IOException;
+
+
+  Project newProject();
 
 }

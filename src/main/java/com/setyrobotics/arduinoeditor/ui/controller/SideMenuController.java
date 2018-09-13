@@ -2,6 +2,7 @@ package com.setyrobotics.arduinoeditor.ui.controller;
 
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import com.jfoenix.controls.JFXListView;
 import javafx.application.Platform;
@@ -13,6 +14,9 @@ public class SideMenuController {
 
   @FXML
   private JFXListView<Label> sideMenuList;
+
+  @Autowired
+  private MainController mainController;
 
 
 
@@ -33,7 +37,8 @@ public class SideMenuController {
 
           Platform.runLater(() -> {
             if (newVal != null) {
-              // ((MainController) context.get(Context.ROOT_CONTROLLER_KEY)).clear();
+
+
               sideMenuList.getSelectionModel().clearSelection();
             }
 
@@ -42,26 +47,28 @@ public class SideMenuController {
         }).start();
 
       }
-      if (newVal.getText().equals("Export")) {
+      if (newVal.getText().equals("Load")) {
 
         new Thread(() -> {
 
           Platform.runLater(() -> {
             if (newVal != null) {
-              // ((MainController) context.get(Context.ROOT_CONTROLLER_KEY)).showExport();
+              mainController.handleLoadAction();
               sideMenuList.getSelectionModel().clearSelection();
             }
           });
 
         }).start();
 
-      } else if (newVal.getText().equals("Settings")) {
+      } else if (newVal.getText().equals("Save")) {
 
         new Thread(() -> {
 
           Platform.runLater(() -> {
             if (newVal != null) {
-              // ((MainController) context.get(Context.ROOT_CONTROLLER_KEY)).showSettings();
+             
+              mainController.handleSaveAction();
+              
             }
           });
 

@@ -3,12 +3,16 @@ package com.setyrobotics.arduinoeditor.ui.controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
+import com.setyrobotics.arduinoeditor.config.ApplicationConfig;
+import com.setyrobotics.arduinoeditor.config.ApplicationConfig.HolderKey;
 import com.setyrobotics.arduinoeditor.config.StageManager;
 import com.setyrobotics.arduinoeditor.context.Context;
 import com.setyrobotics.arduinoeditor.model.Node;
@@ -16,6 +20,7 @@ import com.setyrobotics.arduinoeditor.model.Project;
 import com.setyrobotics.arduinoeditor.model.State;
 import com.setyrobotics.arduinoeditor.service.ProjectService;
 import com.setyrobotics.arduinoeditor.ui.SpringFXMLLoader;
+import com.setyrobotics.arduinoeditor.ui.service.LoadProjectService;
 import eu.mihosoft.scaledfx.ScaleBehavior;
 import eu.mihosoft.vrl.workflow.FlowFactory;
 import eu.mihosoft.vrl.workflow.VFlow;
@@ -68,7 +73,7 @@ public class MainController implements Initializable {
   private StageManager stageManager;
 
   @Autowired
-  private Context context;
+  private Map<HolderKey, Object> holder;
 
   @FXML
   private JFXDrawer drawer;
@@ -78,6 +83,9 @@ public class MainController implements Initializable {
 
   @Autowired
   private ProjectService projectService;
+
+  @Autowired
+  private ApplicationContext applicationContext;
 
   private VFlow statesFlow;
 
@@ -124,7 +132,7 @@ public class MainController implements Initializable {
 
   private void initMainPane() {
 
-    this.project = projectService.getProject();
+    this.project = (Project) holder.get(ApplicationConfig.HolderKey.PROJECT);
 
     tabPane.getTabs().clear();
 
@@ -226,21 +234,25 @@ public class MainController implements Initializable {
 
   public void handleNewAction(ActionEvent event) {
 
-    projectService.newProject();
+    this.project = projectService.newProject();
 
-    this.project = projectService.getProject();
+    holder.put(HolderKey.PROJECT, this.project);
 
     initMainPane();
 
   }
 
-  public void handleLoadAction(ActionEvent event) {
+  public void handleLoadAction() {
 
     FileChooser fileChooser = new FileChooser();
     fileChooser.setTitle("Load");
     File file = fileChooser.showOpenDialog(root.getScene().getWindow());
 
     if (file != null) {
+
+      LoadProjectService task = applicationContext.getBean(LoadProjectService.class, file.toPath());
+      // task.r
+
       try {
         projectService.loadProject(file.toPath());
       } catch (IOException e) {
@@ -248,14 +260,16 @@ public class MainController implements Initializable {
         e.printStackTrace();
       }
 
-      this.project = projectService.getProject();
+     // projectService.setProject(project);
+
+     // this.project = projectService.getProject();
       initMainPane();
     }
 
 
   }
 
-  public void handleSaveAction(ActionEvent event) {
+  public void handleSaveAction() {
 
 
     FileChooser fileChooser = new FileChooser();

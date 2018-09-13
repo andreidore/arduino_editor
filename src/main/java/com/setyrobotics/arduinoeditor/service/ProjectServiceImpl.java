@@ -29,7 +29,7 @@ public class ProjectServiceImpl implements ProjectService {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ProjectServiceImpl.class);
 
-  private Project project;
+
 
   private Gson fxGson;
 
@@ -47,27 +47,21 @@ public class ProjectServiceImpl implements ProjectService {
     fxGson = FxGson.addFxSupport(builder).setPrettyPrinting().create();
   }
 
-  @Override
-  public Project getProject() {
-    return project;
-  }
 
   @Override
-  public void loadProject(final Path path)
+  public Project loadProject(final Path path)
       throws UnsupportedEncodingException, FileNotFoundException, IOException {
 
-
+    LOGGER.info(String.format("load project %s", path));
 
     try (Reader reader = new InputStreamReader(new FileInputStream(path.toFile()), "utf-8")) {
-      project = fxGson.fromJson(reader, Project.class);
+      return fxGson.fromJson(reader, Project.class);
     }
-
-    System.out.println(project);
 
   }
 
   @Override
-  public void saveProject(Path path)
+  public void saveProject(final Project project, final Path path)
       throws UnsupportedEncodingException, FileNotFoundException, IOException {
 
     try (Writer writer = new OutputStreamWriter(new FileOutputStream(path.toFile()), "utf-8")) {
@@ -77,15 +71,17 @@ public class ProjectServiceImpl implements ProjectService {
   }
 
   @Override
-  public void newProject() {
+  public Project newProject() {
 
     LOGGER.info("New project.");
 
-    this.project = new Project();
+    Project project = new Project();
     State mainState = new State();
     mainState.getName().set("Main");
 
     project.getStates().add(mainState);
+
+    return project;
 
   }
 
