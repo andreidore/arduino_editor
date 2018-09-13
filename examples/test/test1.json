@@ -1,39 +1,39 @@
 {
-	"name": "Project Test",
-	"states": [
-		{
-			"nodes": [
-				{
-					"id": 1,
-					"type": "button",
-					"name": "Button1"
-				},
-				{
-					"id": 2,
-					"type": "led",
-					"name": "LEd1"
-				}
-			],
-			"connections": [
-				{
-					"source": 1,
-					"target": 2
-				}
-			],
-			"name": "State1",
-			"width": 303.6483022381226,
-			"height": 220.35628976435146,
-			"x": 192.90723187197278,
-			"y": 244.70396069636664
-		},
-		{
-			"nodes": [
-			],
-			"name": "State2",
-			"width": 378.29213804459573,
-			"height": 354.238401943285,
-			"x": 799.1721725167836,
-			"y": 306.7132935644387
-		}
-	]
+  "name": "Project Test",
+  "states": [
+    {
+      "nodes": [
+        {
+          "type": "button",
+          "name": "Button1",
+          "id": 1
+        },
+        {
+          "type": "led",
+          "name": "LEd1",
+          "id": 2
+        }
+      ],
+      "connections": [
+        {
+          "source": 1,
+          "target": 2
+        }
+      ],
+      "name": "State1",
+      "width": 303.6483022381226,
+      "height": 220.35628976435146,
+      "x": 926.9072318719727,
+      "y": 413.7039606963666
+    },
+    {
+      "nodes": [],
+      "connections": [],
+      "name": "State2",
+      "width": 378.29213804459573,
+      "height": 354.238401943285,
+      "x": 1029.1721725167836,
+      "y": 122.71329356443869
+    }
+  ]
 }
