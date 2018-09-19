@@ -1,0 +1,39 @@
+{
+  "name": "Project Test",
+  "states": [
+    {
+      "nodes": [
+        {
+          "type": "button",
+          "name": "Button1",
+          "id": 1
+        },
+        {
+          "type": "led",
+          "name": "LEd1",
+          "id": 2
+        }
+      ],
+      "connections": [
+        {
+          "source": 1,
+          "target": 2
+        }
+      ],
+      "name": "State1",
+      "width": 303.6483022381226,
+      "height": 220.35628976435146,
+      "x": 926.9072318719727,
+      "y": 413.7039606963666
+    },
+    {
+      "nodes": [],
+      "connections": [],
+      "name": "State2",
+      "width": 1356.8278198242188,
+      "height": 280.2867126464844,
+      "x": 417.1721725167836,
+      "y": 244.7132935644387
+    }
+  ]
+}
