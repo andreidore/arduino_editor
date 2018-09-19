@@ -14,13 +14,13 @@ import com.jfoenix.controls.JFXHamburger;
 import com.setyrobotics.arduinoeditor.config.ApplicationConfig;
 import com.setyrobotics.arduinoeditor.config.ApplicationConfig.HolderKey;
 import com.setyrobotics.arduinoeditor.config.StageManager;
-import com.setyrobotics.arduinoeditor.context.Context;
 import com.setyrobotics.arduinoeditor.model.Node;
 import com.setyrobotics.arduinoeditor.model.Project;
 import com.setyrobotics.arduinoeditor.model.State;
 import com.setyrobotics.arduinoeditor.service.ProjectService;
 import com.setyrobotics.arduinoeditor.ui.SpringFXMLLoader;
 import com.setyrobotics.arduinoeditor.ui.service.LoadProjectService;
+import com.setyrobotics.arduinoeditor.ui.service.SaveProjectService;
 import eu.mihosoft.scaledfx.ScaleBehavior;
 import eu.mihosoft.vrl.workflow.FlowFactory;
 import eu.mihosoft.vrl.workflow.VFlow;
@@ -250,20 +250,20 @@ public class MainController implements Initializable {
 
     if (file != null) {
 
-      LoadProjectService task = applicationContext.getBean(LoadProjectService.class, file.toPath());
-      // task.r
+      LoadProjectService loadService =
+          applicationContext.getBean(LoadProjectService.class, file.toPath());
+      loadService.start();
 
-      try {
-        projectService.loadProject(file.toPath());
-      } catch (IOException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-      }
+      loadService.setOnSucceeded(e -> {
 
-     // projectService.setProject(project);
+        holder.put(HolderKey.PROJECT, loadService.getValue());
 
-     // this.project = projectService.getProject();
-      initMainPane();
+        initMainPane();
+
+      });
+
+
+
     }
 
 
@@ -277,12 +277,15 @@ public class MainController implements Initializable {
     File file = fileChooser.showSaveDialog(root.getScene().getWindow());
 
     if (file != null) {
-      try {
-        projectService.saveProject(file.toPath());
-      } catch (IOException e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-      }
+
+      SaveProjectService saveService = applicationContext.getBean(SaveProjectService.class,
+          holder.get(HolderKey.PROJECT), file.toPath());
+      saveService.start();
+
+      /*
+       * try { projectService.saveProject(); } catch (IOException e) { // TODO Auto-generated catch
+       * block e.printStackTrace(); }
+       */
 
 
     }
