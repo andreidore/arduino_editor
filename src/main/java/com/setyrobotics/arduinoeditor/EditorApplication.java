@@ -50,9 +50,7 @@ public class EditorApplication extends Application {
       // scene.getStylesheets().add(getClass().getResource(TITLED_SKIN_STYLESHEET).toExternalForm());
 
       SpringFXMLLoader loader = springContext.getBean(SpringFXMLLoader.class);
-
       Parent root = loader.load("/fxml/Main.fxml");
-
       // Font.loadFont(getClass().getClassLoader().getResource(FONT_AWESOME).toExternalForm(),
       // 12);
 
@@ -63,8 +61,10 @@ public class EditorApplication extends Application {
       Scene scene = new Scene(decorator);
       final ObservableList<String> stylesheets = scene.getStylesheets();
       stylesheets.addAll(
-          EditorApplication.class.getResource("/css/jfoenix-fonts.css").toExternalForm(),
-          EditorApplication.class.getResource("/css/jfoenix-design.css").toExternalForm(),
+          EditorApplication.class.getResource("/com/jfoenix/assets/css/jfoenix-fonts.css")
+              .toExternalForm(),
+          EditorApplication.class.getResource("/com/jfoenix/assets/css/jfoenix-design.css")
+              .toExternalForm(),
           EditorApplication.class.getResource("/css/application.css").toExternalForm());
 
       stage.setScene(scene);
@@ -74,6 +74,8 @@ public class EditorApplication extends Application {
       stage.show();
 
     } catch (Exception e) {
+
+      System.out.println(e.getMessage() + "------");
 
       e.printStackTrace();
 

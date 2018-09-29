@@ -47,6 +47,7 @@
 			<groupId>eu.mihosoft.vrl.workflow</groupId>
 			<artifactId>vworkflows-core</artifactId>
 			<version>${workflow.version}</version>
+
 			<scope>system</scope>
 			<systemPath>${basedir}/lib/vworkflows-core-${workflow.version}.jar</systemPath>
 		</dependency>
@@ -198,6 +199,23 @@
 					<release>11</release>
 				</configuration>
 			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.2.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>java</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<mainClass>com.setyrobotics.arduinoeditor.EditorApplication</mainClass>
+				</configuration>
+			</plugin>
+
 
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>

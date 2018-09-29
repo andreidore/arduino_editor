@@ -1,6 +1,7 @@
 package com.setyrobotics.arduinoeditor.ui;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ResourceBundle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -27,7 +28,8 @@ public class SpringFXMLLoader {
     FXMLLoader loader = new FXMLLoader();
     loader.setControllerFactory(context::getBean); // Spring now FXML Controller Factory
     loader.setResources(resourceBundle);
-    loader.setLocation(getClass().getResource(fxmlPath));
+    URL res = getClass().getResource(fxmlPath);
+    loader.setLocation(res);
     T root = loader.load();
 
     return root;
