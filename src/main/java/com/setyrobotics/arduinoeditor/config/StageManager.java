@@ -87,21 +87,7 @@ public class StageManager {
     return rootNode;
   }
 
-  public <T> Optional<T> showDialog(String fxmlFilePath, T entity) {
-    Dialog<T> dialog = null;
-    try {
-      dialog = springFXMLLoader.load(fxmlFilePath, entity);
-      Objects.requireNonNull(dialog, "A dialog FXML node must not be null");
-    } catch (Exception exception) {
-      logAndExit("Unable to load FXML dialog" + fxmlFilePath, exception);
-      exception.printStackTrace();
-    }
 
-    dialog.initOwner(primaryStage);
-
-    return dialog.showAndWait();
-
-  }
 
   private void logAndExit(String errorMsg, Exception exception) {
     LOGGER.error(errorMsg, exception, exception.getCause());

@@ -7,7 +7,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 import com.jfoenix.controls.JFXDecorator;
 import com.setyrobotics.arduinoeditor.config.ApplicationConfig.HolderKey;
 import com.setyrobotics.arduinoeditor.config.StageManager;
-import com.setyrobotics.arduinoeditor.context.Context;
 import com.setyrobotics.arduinoeditor.model.Project;
 import com.setyrobotics.arduinoeditor.ui.SpringFXMLLoader;
 import javafx.application.Application;
