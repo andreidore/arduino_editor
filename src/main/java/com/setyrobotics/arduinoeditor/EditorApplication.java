@@ -4,7 +4,6 @@ import java.util.Map;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
-import com.jfoenix.controls.JFXDecorator;
 import com.setyrobotics.arduinoeditor.config.ApplicationConfig.HolderKey;
 import com.setyrobotics.arduinoeditor.config.StageManager;
 import com.setyrobotics.arduinoeditor.model.Project;
@@ -42,6 +41,7 @@ public class EditorApplication extends Application {
   @Override
   public void start(Stage stage) throws Exception {
 
+
     try {
       stageManager = springContext.getBean(StageManager.class);
       stageManager.setStage(stage);
@@ -54,23 +54,15 @@ public class EditorApplication extends Application {
       // Font.loadFont(getClass().getClassLoader().getResource(FONT_AWESOME).toExternalForm(),
       // 12);
 
-      JFXDecorator decorator = new JFXDecorator(stage, root);
-      // context.put(Context.ROOT_WINDOW_DECORATOR, decorator);
-      decorator.setCustomMaximize(true);
-
-      Scene scene = new Scene(decorator);
+      Scene scene = new Scene(root);
       final ObservableList<String> stylesheets = scene.getStylesheets();
-      stylesheets.addAll(
-          EditorApplication.class.getResource("/com/jfoenix/assets/css/jfoenix-fonts.css")
-              .toExternalForm(),
-          EditorApplication.class.getResource("/com/jfoenix/assets/css/jfoenix-design.css")
-              .toExternalForm(),
-          EditorApplication.class.getResource("/css/application.css").toExternalForm());
+      stylesheets
+          .addAll(EditorApplication.class.getResource("/css/application.css").toExternalForm());
 
       stage.setScene(scene);
       stage.setWidth(1000);
       stage.setHeight(1000);
-      stage.setTitle("State Editor");
+      stage.setTitle("RoboAction");
       stage.show();
 
     } catch (Exception e) {
@@ -80,6 +72,7 @@ public class EditorApplication extends Application {
       e.printStackTrace();
 
     }
+
 
   }
 

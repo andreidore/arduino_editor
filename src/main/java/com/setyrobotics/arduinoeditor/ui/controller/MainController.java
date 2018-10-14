@@ -1,7 +1,6 @@
 package com.setyrobotics.arduinoeditor.ui.controller;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -9,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
-import com.jfoenix.controls.JFXDrawer;
-import com.jfoenix.controls.JFXHamburger;
 import com.setyrobotics.arduinoeditor.config.ApplicationConfig;
 import com.setyrobotics.arduinoeditor.config.ApplicationConfig.HolderKey;
 import com.setyrobotics.arduinoeditor.config.StageManager;
@@ -27,7 +24,6 @@ import eu.mihosoft.vrl.workflow.VFlow;
 import eu.mihosoft.vrl.workflow.VNode;
 import eu.mihosoft.vrl.workflow.fx.FXSkinFactory;
 import eu.mihosoft.vrl.workflow.fx.VCanvas;
-import javafx.animation.Transition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,13 +34,14 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 
 @Controller
 public class MainController implements Initializable {
 
   @FXML
-  private StackPane root;
+  private VBox root;
 
   @FXML
   private TextArea console;
@@ -61,9 +58,6 @@ public class MainController implements Initializable {
   @FXML
   private StackPane titleBurgerContainer;
 
-  @FXML
-  private JFXHamburger titleBurger;
-
 
   @FXML
   private ListView<Node> componentList;
@@ -75,8 +69,6 @@ public class MainController implements Initializable {
   @Autowired
   private Map<HolderKey, Object> holder;
 
-  @FXML
-  private JFXDrawer drawer;
 
   @Autowired
   private SpringFXMLLoader loader;
@@ -93,38 +85,6 @@ public class MainController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-
-
-    StackPane sidePane = null;
-    try {
-      sidePane = loader.load("/fxml/SideMenu.fxml");
-    } catch (IOException e1) {
-      // TODO Auto-generated catch block
-      e1.printStackTrace();
-    }
-
-
-    if (sidePane != null)
-
-    {
-      drawer.setSidePane(sidePane);
-    }
-
-    drawer.setOnDrawerOpening(e -> {
-      final Transition animation = titleBurger.getAnimation();
-      animation.setRate(1);
-      animation.play();
-    });
-    drawer.setOnDrawerClosing(e -> {
-      final Transition animation = titleBurger.getAnimation();
-      animation.setRate(-1);
-      animation.play();
-    });
-    titleBurgerContainer.setOnMouseClicked(e -> {
-      drawer.toggle();
-    });
-
-
 
     initMainPane();
 

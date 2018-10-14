@@ -1,104 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import javafx.geometry.Insets?>
-<?import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition?>
+<?import java.lang.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import java.lang.String?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import com.jfoenix.controls.JFXToggleButton?>
-<?import javafx.scene.layout.FlowPane?>
-<?import com.github.andreidore.digitizer2d.ui.*?>
-<?import com.github.andreidore.digitizer2d.ui.digitizer.*?>
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.ToolBar?>
 
-<StackPane fx:id="root" xmlns:fx="http://javafx.com/fxml/1"
-	xmlns="http://javafx.com/javafx/2.2"
+<VBox fx:id="root" prefHeight="200" prefWidth="400"
+	xmlns:fx="http://javafx.com/fxml"
 	fx:controller="com.setyrobotics.arduinoeditor.ui.controller.MainController">
+	<MenuBar fx:id="menuBar">
+		<menus>
+			<Menu text="File">
+				<items>
+					<MenuItem text="New" />
+					<MenuItem text="Open" onAction="#handleLoadAction" />
+					<MenuItem text="Save" onAction="#handleSaveAction" />
+					<MenuItem text="Save As" />
+					<SeparatorMenuItem />
+					<MenuItem text="Exit" />
+				</items>
+			</Menu>
+			<Menu text="Edit">
+				<items>
+					<MenuItem text="Copy" />
+					<MenuItem text="Cut" />
+					<MenuItem text="Paste" />
+				</items>
+			</Menu>
+			<Menu text="Help">
+				<items>
+					<MenuItem text="Search" disable="true" />
+					<MenuItem text="Online Manual" visible="false" />
+					<SeparatorMenuItem />
+					<MenuItem text="About" />
+				</items>
+			</Menu>
+		</menus>
+	</MenuBar>
+	<ToolBar>
+		<items>
+			<Button fx:id="recordButton" mnemonicParsing="false"
+			 text="Record">
+			</Button>
 
-	<!-- Header -->
-	<BorderPane>
-		<top>
-			<VBox spacing="20">
-				<JFXToolbar fx:id="toolBar">
-					<leftItems>
-						<JFXRippler maskType="CIRCLE"
-							style="-fx-ripple-color:WHITE;">
-							<StackPane fx:id="titleBurgerContainer">
-								<JFXHamburger fx:id="titleBurger">
-									<HamburgerBackArrowBasicTransition />
-								</JFXHamburger>
-							</StackPane>
-						</JFXRippler>
+		</items>
+	</ToolBar>
 
-					</leftItems>
+	<TabPane fx:id="tabPane">
+		<tabs>
+			<Tab fx:id="statePane" text="States">
+			</Tab>
 
-					<rightItems>
-						<Label fx:id="objectsLabel" />
-						<Label fx:id="pointsLabel" />
-						<Region minWidth="200" />
-						<JFXButton fx:id="settingsButton" />
-					</rightItems>
-				</JFXToolbar>
-			</VBox>
-		</top>
+		</tabs>
+	</TabPane>
 
-		<!-- Content Area -->
-		<center>
-			<JFXDrawer fx:id="drawer" defaultDrawerSize="250"
-				direction="LEFT">
-				<styleClass>
-					<String fx:value="body" />
-				</styleClass>
-
-				<content>
-
-					<BorderPane>
-						<left>
-							<VBox>
-							</VBox>
-						</left>
-						<center>
-
-
-							<TabPane fx:id="tabPane">
-								<tabs>
-									<Tab fx:id="statePane" text="States">
-									</Tab>
-
-								</tabs>
-							</TabPane>
-
-
-						</center>
-					</BorderPane>
-				</content>
-
-			</JFXDrawer>
-		</center>
-		<bottom>
-			<VBox spacing="5" style="-fx-padding: 5 5 5 5;">
-				<TextArea fx:id="console" visible="false" managed="false" />
-				<HBox alignment="CENTER" spacing="10">
-					<Label fx:id="statusLabel" />
-
-
-					<Region HBox.hgrow="ALWAYS" />
-					<Label maxHeight="15">Auto-center</Label>
-					<JFXToggleButton prefWidth="100" />
-					<Label maxHeight="15">Console</Label>
-					<JFXToggleButton fx:id="consoleButton"
-						prefWidth="100" />
-				</HBox>
-			</VBox>
-		</bottom>
-	</BorderPane>
-</StackPane>
-
+</VBox>
