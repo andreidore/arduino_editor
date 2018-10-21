@@ -34,14 +34,13 @@ import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
 
 @Controller
 public class MainController implements Initializable {
 
   @FXML
-  private VBox root;
+  private StackPane  root;
 
   @FXML
   private TextArea console;
