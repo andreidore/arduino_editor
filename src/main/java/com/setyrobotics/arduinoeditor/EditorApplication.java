@@ -62,7 +62,7 @@ public class EditorApplication extends Application {
       stage.setScene(scene);
       stage.setWidth(1000);
       stage.setHeight(1000);
-      stage.setTitle("RoboAction");
+      stage.setTitle("State Editor");
       stage.show();
 
     } catch (Exception e) {

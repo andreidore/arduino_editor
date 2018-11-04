@@ -5,54 +5,54 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.BorderPane?>
 
-<VBox fx:id="root" prefHeight="200" prefWidth="400"
+<StackPane fx:id="root" prefHeight="200" prefWidth="400"
 	xmlns:fx="http://javafx.com/fxml"
 	fx:controller="com.setyrobotics.arduinoeditor.ui.controller.MainController">
-	<MenuBar fx:id="menuBar">
-		<menus>
-			<Menu text="File">
-				<items>
-					<MenuItem text="New" />
-					<MenuItem text="Open" onAction="#handleLoadAction" />
-					<MenuItem text="Save" onAction="#handleSaveAction" />
-					<MenuItem text="Save As" />
-					<SeparatorMenuItem />
-					<MenuItem text="Exit" />
-				</items>
-			</Menu>
-			<Menu text="Edit">
-				<items>
-					<MenuItem text="Copy" />
-					<MenuItem text="Cut" />
-					<MenuItem text="Paste" />
-				</items>
-			</Menu>
-			<Menu text="Help">
-				<items>
-					<MenuItem text="Search" disable="true" />
-					<MenuItem text="Online Manual" visible="false" />
-					<SeparatorMenuItem />
-					<MenuItem text="About" />
-				</items>
-			</Menu>
-		</menus>
-	</MenuBar>
-	<ToolBar>
-		<items>
-			<Button fx:id="recordButton" mnemonicParsing="false"
-			 text="Record">
-			</Button>
+	<children>
+		<BorderPane>
+			<top>
+				<MenuBar fx:id="menuBar">
+					<menus>
+						<Menu text="File">
+							<items>
+								<MenuItem text="New" />
+								<MenuItem text="Open" onAction="#handleLoadAction" />
+								<MenuItem text="Save" onAction="#handleSaveAction" />
+								<MenuItem text="Save As" />
+								<SeparatorMenuItem />
+								<MenuItem text="Exit" />
+							</items>
+						</Menu>
+						<Menu text="Edit">
+							<items>
+								<MenuItem text="Copy" />
+								<MenuItem text="Cut" />
+								<MenuItem text="Paste" />
+							</items>
+						</Menu>
+						<Menu text="Help">
+							<items>
+								<MenuItem text="Search" disable="true" />
+								<MenuItem text="Online Manual" visible="false" />
+								<SeparatorMenuItem />
+								<MenuItem text="About" />
+							</items>
+						</Menu>
+					</menus>
+				</MenuBar>
+			</top>
+			<center>
 
-		</items>
-	</ToolBar>
+				<TabPane fx:id="tabPane">
+					<tabs>
+						<Tab fx:id="statePane" text="States">
+						</Tab>
 
-	<TabPane fx:id="tabPane">
-		<tabs>
-			<Tab fx:id="statePane" text="States">
-			</Tab>
-
-		</tabs>
-	</TabPane>
-
-</VBox>
+					</tabs>
+				</TabPane>
+			</center>
+		</BorderPane>
+	</children>
+</StackPane>
