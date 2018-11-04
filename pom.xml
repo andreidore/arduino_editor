@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.setyrobotics</groupId>
 	<artifactId>arduinoeditor</artifactId>
@@ -11,7 +10,7 @@
 
 	<properties>
 		<workflow.version>
-			0.2.4.4
+			0.2.4.3
 		</workflow.version>
 		<openjfx.version>
 			11
@@ -48,16 +47,14 @@
 			<artifactId>vworkflows-core</artifactId>
 			<version>${workflow.version}</version>
 
-			<scope>system</scope>
-			<systemPath>${basedir}/lib/vworkflows-core-${workflow.version}.jar</systemPath>
+
 		</dependency>
 
 		<dependency>
 			<groupId>eu.mihosoft.vrl.workflow</groupId>
 			<artifactId>vworkflows-fx</artifactId>
 			<version>${workflow.version}</version>
-			<scope>system</scope>
-			<systemPath>${basedir}/lib/vworkflows-fx-${workflow.version}.jar</systemPath>
+
 		</dependency>
 
 		<dependency>
@@ -183,6 +180,17 @@
 
 
 
+		<!-- https://mvnrepository.com/artifact/org.tinyjee.jgraphx/jgraphx -->
+		<dependency>
+			<groupId>org.tinyjee.jgraphx</groupId>
+			<artifactId>jgraphx</artifactId>
+			<version>3.4.1.3</version>
+		</dependency>
+
+
+
+
+
 
 
 
@@ -212,7 +220,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<mainClass>com.setyrobotics.arduinoeditor.EditorApplication</mainClass>
+					<mainClass>com.mxgraph.examples.swing.GraphEditor</mainClass>
 				</configuration>
 			</plugin>
 
